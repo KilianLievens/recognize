@@ -4,3 +4,46 @@
   height: 16px;
   color: #12a54b;
 }
+
+/* Our custom CSS is loaded after all the other CSS. This means we need to make use of !important to apply our overrides. */
+.verify-button {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  border: none !important;
+  display: flex !important;
+  padding: 8px 16px !important;
+  border-radius: 4px !important;
+  align-items: center;
+  gap: 8px;
+  transition-property: background-color color !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition-duration: 150ms !important;
+  height: 50px;
+}
+
+.verify-button-pexip {
+  background-color: #0b2036 !important;
+  color: white !important;
+}
+
+.verify-button-pexip:hover {
+  background-color: #354860 !important;
+}
+
+.verify-button-pexip-logo > svg {
+  height: 12px;
+}
+
+.verify-button-itsme {
+  background-color: #ff4612 !important;
+  color: white !important;
+}
+
+.verify-button-itsme:hover {
+  background-color: #cf2c00 !important;
+}
+
+.verify-button-itsme-logo > svg {
+  height: 32px;
+  width: 32px;
+}
