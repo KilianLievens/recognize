@@ -1,5 +1,4 @@
-import { IHttp, IMessageBuilder, IModify, IModifyCreator, IPersistence, IRead, IUIController } from "@rocket.chat/apps-engine/definition/accessors";
-import { IMessage } from "@rocket.chat/apps-engine/definition/messages";
+import { IHttp, IMessageBuilder, IModify, IModifyCreator, IPersistence, IRead } from "@rocket.chat/apps-engine/definition/accessors";
 import { IRoom } from "@rocket.chat/apps-engine/definition/rooms";
 import { ISlashCommand, SlashCommandContext } from "@rocket.chat/apps-engine/definition/slashcommands";
 import { IUser } from "@rocket.chat/apps-engine/definition/users";
@@ -14,37 +13,60 @@ export class VerifyCommand implements ISlashCommand {
     context: SlashCommandContext,
     read: IRead,
     modify: IModify,
-    http: IHttp,
-    persis: IPersistence
+    _http: IHttp,
+    _persis: IPersistence
   ): Promise<void> {
     const creator: IModifyCreator = modify.getCreator()
-    const sender: IUser = (await read.getUserReader().getAppUser()) as IUser
+    const notifier = modify.getNotifier();
+    const appUser: IUser = (await read.getUserReader().getAppUser()) as IUser
+    const senderUser: IUser = context.getSender();
     const room: IRoom = context.getRoom()
+
+    const roomMembers = await read.getRoomReader().getMembers(room.id)
+    const everybodyButSender = roomMembers.filter(u => u.id !== senderUser.id);
+
+    if (everybodyButSender.length === 0) {
+      notifier.notifyUser(
+        senderUser, {
+        sender: appUser,
+        room,
+        text: 'Nobody to verify? :thinking:'
+      });
+      return
+    }
+
+    const messageBuilder: IMessageBuilder = creator.startMessage({
+      sender: appUser,
+      room,
+      text: 'User verification started :sleuth_or_spy:'
+    })
+    await creator.finish(messageBuilder)
 
     const blocks = creator.getBlockBuilder();
     blocks.addActionsBlock({
       blockId: 'this-is-my-block-id',
       elements: [
         blocks.newButtonElement({
-          url: 'https://www.google.com',
-          text: blocks.newPlainTextObject('itsme'),
+          url: 'https://www.itsme-id.com/',
+          text: blocks.newPlainTextObject('Verify with itsme'),
           actionId: 'verify-button',
         }),
         blocks.newButtonElement({
           url: 'https://www.pexip.com',
-          text: blocks.newPlainTextObject('pexip'),
+          text: blocks.newPlainTextObject('Verify with a video call'),
           actionId: 'verify-button'
         }),
       ]
     });
 
-    const messageTemplate: IMessage = {
-      sender,
-      room,
-      blocks: blocks.getBlocks()
+    for (const guy of everybodyButSender) {
+      notifier.notifyUser(
+        guy, {
+        sender: appUser,
+        room,
+        text: `${senderUser.name} has requested you to verify your identity. Please use your preferred verification process:`,
+        blocks: blocks.getBlocks()
+      });
     }
-    const messageBuilder: IMessageBuilder = creator.startMessage(messageTemplate)
-    await creator.finish(messageBuilder)
   }
-
 }
