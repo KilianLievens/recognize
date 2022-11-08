@@ -2,7 +2,7 @@
   "name": "recognize",
   "version": "1.0.0",
   "description": "Get to know people.",
-  "main": "src/index.ts",
+  "main": "src/recognize-app.ts",
   "scripts": {
     "rc-apps": "rc-apps"
   },
