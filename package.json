@@ -1,0 +1,31 @@
+{
+  "name": "recognize",
+  "version": "1.0.0",
+  "description": "Get to know people.",
+  "main": "src/index.ts",
+  "scripts": {
+    "rc-apps": "rc-apps"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KilianLievens/recognize.git"
+  },
+  "keywords": [
+    "verification",
+    "recognition",
+    "security"
+  ],
+  "author": "Legends of the Puyenbroeck",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KilianLievens/recognize/issues"
+  },
+  "homepage": "https://github.com/KilianLievens/recognize#readme",
+  "devDependencies": {
+    "@rocket.chat/apps-engine": "^1.19.0",
+    "@rocket.chat/apps-cli": "^1.10.1",
+    "@types/node": "^18.11.9",
+    "tslint": "^5.10.0",
+    "typescript": "^4.8.4"
+  }
+}

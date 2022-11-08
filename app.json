@@ -1,0 +1,15 @@
+{
+    "id": "685aee23-54c7-4656-9fac-6ef1e39a1b7d",
+    "version": "0.0.1",
+    "requiredApiVersion": "^1.35.0",
+    "iconFile": "icon.png",
+    "author": {
+        "name": "Legends of the Puyenbroeck",
+        "homepage": "https://github.com/KilianLievens/recognize",
+        "support": "https://github.com/KilianLievens/recognize"
+    },
+    "name": "Recognize",
+    "nameSlug": "recognize",
+    "classFile": "RecognizeApp.ts",
+    "description": "Get to know people."
+}
