@@ -18,14 +18,30 @@ export class VerifyCommand implements ISlashCommand {
     persis: IPersistence
   ): Promise<void> {
     const creator: IModifyCreator = modify.getCreator()
-    // const uiController: IUIController = modify.getUiController()
-    // uiController.openModalView(,,sender)
     const sender: IUser = (await read.getUserReader().getAppUser()) as IUser
     const room: IRoom = context.getRoom()
+
+    const blocks = creator.getBlockBuilder();
+    blocks.addActionsBlock({
+      blockId: 'this-is-my-block-id',
+      elements: [
+        blocks.newButtonElement({
+          url: 'https://www.google.com',
+          text: blocks.newPlainTextObject('itsme'),
+          actionId: 'verify-button',
+        }),
+        blocks.newButtonElement({
+          url: 'https://www.pexip.com',
+          text: blocks.newPlainTextObject('pexip'),
+          actionId: 'verify-button'
+        }),
+      ]
+    });
+
     const messageTemplate: IMessage = {
-      text: 'Hello, World!',
       sender,
-      room
+      room,
+      blocks: blocks.getBlocks()
     }
     const messageBuilder: IMessageBuilder = creator.startMessage(messageTemplate)
     await creator.finish(messageBuilder)
