@@ -43,6 +43,11 @@ export class VerifyCommand implements ISlashCommand {
     await creator.finish(messageBuilder)
 
     const blocks = creator.getBlockBuilder();
+
+    blocks.addSectionBlock({
+      text: blocks.newPlainTextObject(`${senderUser.name} has requested you to verify your identity. Please use your preferred verification process:`),
+    });
+
     blocks.addActionsBlock({
       blockId: 'this-is-my-block-id',
       elements: [
@@ -64,7 +69,6 @@ export class VerifyCommand implements ISlashCommand {
         guy, {
         sender: appUser,
         room,
-        text: `${senderUser.name} has requested you to verify your identity. Please use your preferred verification process:`,
         blocks: blocks.getBlocks()
       });
     }
