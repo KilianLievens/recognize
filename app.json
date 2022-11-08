@@ -10,7 +10,7 @@
     },
     "name": "Recognize",
     "nameSlug": "recognize",
-    "classFile": "RecognizeApp.ts",
+    "classFile": "src/recognize-app.ts",
     "description": "Get to know people.",
     "implements": []
 }
