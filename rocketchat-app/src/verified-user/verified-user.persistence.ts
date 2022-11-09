@@ -19,4 +19,10 @@ export default class VerifiedUserPersistence {
         const association = new RocketChatAssociationRecord(RocketChatAssociationModel.MISC, 'verified-user');
         return await persistence.readByAssociation(association) as Array<IVerifiedUser>;
     }
+
+    public static async getVerifiedUserNames(persistence: IPersistenceRead): Promise<Array<string>> {
+        const users = await VerifiedUserPersistence.findVerifiedUsers(persistence);
+
+        return users.map((user) => user.username);
+    }
 }

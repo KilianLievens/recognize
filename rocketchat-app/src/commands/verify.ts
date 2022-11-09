@@ -57,6 +57,7 @@ export class VerifyCommand implements ISlashCommand {
       userToken: visitor.token,
       identificationRequestedBy: senderUser.id,
       verificationMessageId: messageId,
+      username: visitor.username,
     };
 
     const editBlocks = creator.getBlockBuilder();

@@ -23,6 +23,18 @@ export default class VerifyUserEndpoint extends ApiEndpoint {
     });
   }
 
+  public async get(
+      request: IApiRequest, endpoint: IApiEndpointInfo, read: IRead, modify: IModify, http: IHttp, persis: IPersistence,
+  ): Promise<IApiResponseJSON> {
+    const userNames = await VerifiedUserPersistence.getVerifiedUserNames(read.getPersistenceReader());
+
+    return this.json({
+      status: 200,
+      headers: corsHeaders,
+      content: userNames.filter((userName) => userName != null),
+    });
+  }
+
   public async post(
     request: IApiRequest, endpoint: IApiEndpointInfo, read: IRead, modify: IModify, http: IHttp, persis: IPersistence,
   ): Promise<IApiResponseJSON> {
@@ -54,6 +66,7 @@ export default class VerifyUserEndpoint extends ApiEndpoint {
         identificationRequestedBy: decryptedState.identificationRequestedBy,
         identifiedBy: decryptedState.identifiedBy,
         signature: state,
+        username: decryptedState.username,
       });
 
       const creator = modify.getCreator();

@@ -12,6 +12,7 @@ export default interface IVerifiedUser {
     identifiedBy: IdentificationMethods;
     identificationRequestedBy: string;
     signature: string;
+    username: string;
     verifiedAt: Date;
 }
 
@@ -21,4 +22,5 @@ export interface IDecryptedToken {
     identificationRequestedBy: string;
     identifiedBy: IdentificationMethods;
     verificationMessageId: string;
+    username: string;
 }
