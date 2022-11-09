@@ -17,7 +17,8 @@ export default interface IVerifiedUser {
 
 export interface IDecryptedToken {
     roomId: string;
-    userId: string;
+    userToken: string;
     identificationRequestedBy: string;
     identifiedBy: IdentificationMethods;
+    verificationMessageId: string;
 }

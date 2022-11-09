@@ -21,7 +21,7 @@ export const settings: Array<ISetting> = [
         public: true,
         values: [
             { key: 'itsme', i18nLabel: `${AppSetting.EnabledIdentificationServices}_itsme` },
-            { key: 'pexip', i18nLabel: `${AppSetting.EnabledIdentificationServices}_pexip` }
+            { key: 'pexip', i18nLabel: `${AppSetting.EnabledIdentificationServices}_pexip` },
         ],
         i18nLabel: AppSetting.EnabledIdentificationServices,
         i18nDescription: `${AppSetting.EnabledIdentificationServices}_description`,
