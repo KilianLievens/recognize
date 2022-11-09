@@ -7,8 +7,21 @@ import { AppSetting } from '../settings';
 import { IDecryptedToken } from '../verified-user/verified-user.model';
 import VerifiedUserPersistence from '../verified-user/verified-user.persistence';
 
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'content-type',
+  'Access-Control-Allow-Methods': 'POST'
+}
+
 export default class VerifyUserEndpoint extends ApiEndpoint {
   public path = 'verify-user';
+
+  public async options(request: IApiRequest, endpoint: IApiEndpointInfo, read: IRead, modify: IModify, http: IHttp, persis: IPersistence): Promise<IApiResponseJSON> {
+    return this.json({
+      status: 200,
+      headers: corsHeaders
+    })
+  }
 
   public async post(
     request: IApiRequest, endpoint: IApiEndpointInfo, read: IRead, modify: IModify, http: IHttp, persis: IPersistence,
@@ -18,7 +31,10 @@ export default class VerifyUserEndpoint extends ApiEndpoint {
     const state = request.query?.state;
 
     if (state == null) {
-      return this.json({ status: 400 });
+      return this.json({
+        status: 400,
+        headers: corsHeaders
+      });
     }
 
     try {
@@ -63,10 +79,17 @@ export default class VerifyUserEndpoint extends ApiEndpoint {
       updatedMessageBuilder.setEditor(appUser);
       await updater.finish(updatedMessageBuilder);
 
-      return this.json({ status: 204 });
+      return this.json({
+        status: 200,
+        headers: corsHeaders
+      });
     } catch (e) {
       console.log(e);
-      return this.json({ status: 500 });
+
+      return this.json({
+        status: 500,
+        headers: corsHeaders
+      });
     }
   }
 }
