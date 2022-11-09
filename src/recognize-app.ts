@@ -13,6 +13,7 @@ import { IAppInfo } from '@rocket.chat/apps-engine/definition/metadata';
 import { UIKitBlockInteractionContext } from '@rocket.chat/apps-engine/definition/uikit';
 import { VerifyCommand } from './commands/verify';
 import VerifyUserEndpoint from './endpoints/verify-user.endpoint';
+import { settings } from './settings';
 
 export class RecognizeApp extends App {
     constructor(info: IAppInfo, logger: ILogger, accessors: IAppAccessors) {
@@ -33,6 +34,8 @@ export class RecognizeApp extends App {
     public async extendConfiguration(
         configuration: IConfigurationExtend,
     ): Promise<void> {
+        await Promise.all(settings.map((setting) => configuration.settings.provideSetting(setting)));
+
         const verifyCommand: VerifyCommand = new VerifyCommand();
         await configuration.slashCommands.provideSlashCommand(verifyCommand);
 
