@@ -1,47 +1,24 @@
-import {
-    IHttp,
-    IMessageBuilder,
-    IModify,
-    IModifyCreator,
-    IPersistence,
-    IRead,
-} from '@rocket.chat/apps-engine/definition/accessors';
-import {IMessage} from '@rocket.chat/apps-engine/definition/messages';
-import {IRoom} from '@rocket.chat/apps-engine/definition/rooms';
-import {ISlashCommand, SlashCommandContext} from '@rocket.chat/apps-engine/definition/slashcommands';
-import {IUser} from '@rocket.chat/apps-engine/definition/users';
-import {randomInt} from 'crypto';
+import { IHttp, IModify, IPersistence, IRead } from '@rocket.chat/apps-engine/definition/accessors';
+import { ISlashCommand, SlashCommandContext } from '@rocket.chat/apps-engine/definition/slashcommands';
 
 export class VerifyCommand implements ISlashCommand {
-    public command: string = 'verify';
-    public i18nDescription: string = 'Verify the identity of a user';
-    public i18nParamsExample = '';
-    public providesPreview: boolean = false;
+  public command: string = 'verify';
+  public i18nDescription: string = 'Verify the identity of a user';
+  public i18nParamsExample = '';
+  public providesPreview: boolean = false;
 
   public async executor(
     context: SlashCommandContext,
     read: IRead,
     modify: IModify,
-    http: IHttp,
-    persist: IPersistence,
+    _http: IHttp,
+    _persist: IPersistence,
   ): Promise<void> {
     const creator = modify.getCreator();
     const notifier = modify.getNotifier();
     const appUser = (await read.getUserReader().getAppUser())!;
     const senderUser = context.getSender();
     const room = context.getRoom();
-
-    const roomMembers = await read.getRoomReader().getMembers(room.id);
-
-    if (roomMembers.length <= 1) {
-      notifier.notifyUser(
-        senderUser, {
-        sender: appUser,
-        room,
-        text: 'Nobody to verify? :thinking:',
-      });
-      return;
-    }
 
     const blocks = creator.getBlockBuilder();
 
@@ -81,4 +58,3 @@ export class VerifyCommand implements ISlashCommand {
     );
   }
 }
-https://github.com/KilianLievens/recognize

@@ -1,8 +1,8 @@
-import {z} from 'zod';
 import {IHttp, IModify, IPersistence, IRead} from '@rocket.chat/apps-engine/definition/accessors';
 import {ApiEndpoint, IApiEndpointInfo, IApiRequest, IApiResponse} from '@rocket.chat/apps-engine/definition/api';
 import {IApiResponseJSON} from '@rocket.chat/apps-engine/definition/api/IResponse';
 import {randomUUID} from 'crypto';
+import {z} from 'zod';
 import VerifiedUserPersistence from '../verified-user/verified-user.persistence';
 
 export default class VerifyUserEndpoint extends ApiEndpoint {
