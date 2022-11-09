@@ -1,7 +1,5 @@
-import { IHttp, IMessageBuilder, IModify, IModifyCreator, IPersistence, IRead } from "@rocket.chat/apps-engine/definition/accessors";
-import { IRoom } from "@rocket.chat/apps-engine/definition/rooms";
+import { IHttp, IModify, IPersistence, IRead } from "@rocket.chat/apps-engine/definition/accessors";
 import { ISlashCommand, SlashCommandContext } from "@rocket.chat/apps-engine/definition/slashcommands";
-import { IUser } from "@rocket.chat/apps-engine/definition/users";
 
 export class VerifyCommand implements ISlashCommand {
   public command: string = 'verify';
@@ -16,16 +14,15 @@ export class VerifyCommand implements ISlashCommand {
     _http: IHttp,
     _persis: IPersistence
   ): Promise<void> {
-    const creator: IModifyCreator = modify.getCreator()
+    const creator = modify.getCreator()
     const notifier = modify.getNotifier();
-    const appUser: IUser = (await read.getUserReader().getAppUser()) as IUser
-    const senderUser: IUser = context.getSender();
-    const room: IRoom = context.getRoom()
+    const appUser = (await read.getUserReader().getAppUser())!
+    const senderUser = context.getSender();
+    const room = context.getRoom()
 
     const roomMembers = await read.getRoomReader().getMembers(room.id)
-    const everybodyButSender = roomMembers.filter(u => u.id !== senderUser.id);
 
-    if (everybodyButSender.length === 0) {
+    if (roomMembers.length <= 1) {
       notifier.notifyUser(
         senderUser, {
         sender: appUser,
@@ -34,13 +31,6 @@ export class VerifyCommand implements ISlashCommand {
       });
       return
     }
-
-    const messageBuilder: IMessageBuilder = creator.startMessage({
-      sender: appUser,
-      room,
-      text: 'User verification started :sleuth_or_spy:'
-    })
-    await creator.finish(messageBuilder)
 
     const blocks = creator.getBlockBuilder();
 
@@ -64,13 +54,19 @@ export class VerifyCommand implements ISlashCommand {
       ]
     });
 
-    for (const guy of everybodyButSender) {
-      notifier.notifyUser(
-        guy, {
+    notifier.notifyUser(
+      senderUser, {
+      sender: appUser,
+      room,
+      text: 'Please do not interact with the below message.'
+    });
+
+    await creator.finish(
+      creator.startMessage({
         sender: appUser,
         room,
         blocks: blocks.getBlocks()
-      });
-    }
+      })
+    )
   }
 }
