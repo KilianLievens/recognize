@@ -41,12 +41,10 @@ setInterval(() => {
       return;
     }
 
-    element.classList.add("styled", "verify-button");
-
     // Todo: better detection which button it is.
     // Would be nice if we could set something with data attributes
-    if (element.href.includes("itsme")) {
-      element.classList.add("verify-button-itsme");
+    if (element.href?.includes("itsme")) {
+      element.classList.add("styled", "verify-button", "verify-button-itsme");
 
       element.innerHTML = `
       <div class="verify-button-itsme-logo">${svgs.itsme}</div>
@@ -56,8 +54,8 @@ setInterval(() => {
 
     // Todo: better detection which button it is.
     // Would be nice if we could set something with data attributes
-    else if (element.href.includes("pexip")) {
-      element.classList.add("verify-button-pexip");
+    else if (element.href?.includes("pexip")) {
+      element.classList.add("styled", "verify-button", "verify-button-pexip");
 
       element.innerHTML = `
       <div class="verify-button-pexip-logo">${svgs.pexip}</div>
