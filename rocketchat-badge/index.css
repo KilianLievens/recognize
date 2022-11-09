@@ -3,6 +3,7 @@
   width: 16px;
   height: 16px;
   color: #12a54b;
+  align-self: center;
 }
 
 /* Our custom CSS is loaded after all the other CSS. This means we need to make use of !important to apply our overrides. */
