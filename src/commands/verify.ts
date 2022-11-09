@@ -39,8 +39,14 @@ export class VerifyCommand implements ISlashCommand {
       text: 'Please do not interact with the below message.',
     });
 
+    const createBlocks = creator.getBlockBuilder();
+
+    createBlocks.addSectionBlock({
+      text: createBlocks.newPlainTextObject('Pending...'),
+    });
+
     const messageId = await creator.finish(
-      creator.startMessage({ sender: appUser, room, text: 'Pending...' }),
+      creator.startMessage({ sender: appUser, room, blocks: createBlocks.getBlocks()}),
     );
 
     const appSecret = await read.getEnvironmentReader().getSettings().getValueById(AppSetting.AppSecret);
@@ -52,31 +58,32 @@ export class VerifyCommand implements ISlashCommand {
       verificationMessageId: messageId,
     };
 
-    const blocks = creator.getBlockBuilder();
+    const editBlocks = creator.getBlockBuilder();
 
-    blocks.addSectionBlock({
-      text: blocks.newPlainTextObject(`${senderUser.name} has requested you to verify your identity. Please use your preferred verification process:`),
+    editBlocks.addSectionBlock({
+      text: editBlocks.newPlainTextObject(`${senderUser.name} has requested you to verify your identity. Please use your preferred verification process:`),
     });
 
-    blocks.addActionsBlock({
+    editBlocks.addActionsBlock({
       blockId: 'this-is-my-block-id',
       elements: [
-        blocks.newButtonElement({
+        editBlocks.newButtonElement({
           url: `https://recognize-landing.vercel.app/itsme/index.html${this.createStateString({ ...stateStringInput, identifiedBy: IdentificationMethods.ITSME }, appSecret)}`,
-          text: blocks.newPlainTextObject('Verify with itsme'),
+          text: editBlocks.newPlainTextObject('Verify with itsme'),
           actionId: 'verify-button',
         }),
-        blocks.newButtonElement({
+        editBlocks.newButtonElement({
           url: `https://www.pexip.com${this.createStateString({ ...stateStringInput, identifiedBy: IdentificationMethods.PEXIP }, appSecret)}`,
-          text: blocks.newPlainTextObject('Verify with a video call'),
+          text: editBlocks.newPlainTextObject('Verify with a video call'),
           actionId: 'verify-button',
         }),
       ],
     });
 
     const updatedMessageBuilder = await updater.message(messageId, appUser);
-    updatedMessageBuilder.setBlocks(blocks.getBlocks());
+    updatedMessageBuilder.setBlocks(editBlocks.getBlocks());
     updatedMessageBuilder.setEditor(appUser);
+    updatedMessageBuilder.setText('');
     await updater.finish(updatedMessageBuilder);
   }
 
