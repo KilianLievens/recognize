@@ -12,6 +12,7 @@ import { App } from '@rocket.chat/apps-engine/definition/App';
 import { IAppInfo } from '@rocket.chat/apps-engine/definition/metadata';
 import { UIKitBlockInteractionContext } from '@rocket.chat/apps-engine/definition/uikit';
 import { VerifyCommand } from './commands/verify';
+import PexipRedirectEndpoint from './endpoints/pexip-redirect.endpoint';
 import VerifyUserEndpoint from './endpoints/verify-user.endpoint';
 import { settings } from './settings';
 
@@ -43,6 +44,12 @@ export class RecognizeApp extends App {
             visibility: ApiVisibility.PUBLIC,
             security: ApiSecurity.UNSECURE,
             endpoints: [new VerifyUserEndpoint(this)],
+        });
+
+        await configuration.api.provideApi({
+            visibility: ApiVisibility.PUBLIC,
+            security: ApiSecurity.UNSECURE,
+            endpoints: [new PexipRedirectEndpoint(this)],
         });
     }
 }
