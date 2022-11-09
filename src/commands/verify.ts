@@ -43,7 +43,7 @@ export class VerifyCommand implements ISlashCommand {
       blockId: 'this-is-my-block-id',
       elements: [
         blocks.newButtonElement({
-          url: `https://www.itsme-id.com${this.createStateString(room.id, senderUser.id, visitor.token, IdentificationMethods.ITSME, appSecret)}`,
+          url: `https://recognize-landing.vercel.app/itsme/index.html${this.createStateString(room.id, senderUser.id, visitor.token, IdentificationMethods.ITSME, appSecret)}`,
           text: blocks.newPlainTextObject('Verify with itsme'),
           actionId: 'verify-button',
         }),
