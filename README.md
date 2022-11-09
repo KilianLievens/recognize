@@ -4,6 +4,7 @@ Get to know people.
 
 ## Links
 
+- Landing page: https://recognize-landing.vercel.app
 - Demo Itsme® page: https://recognize-landing.vercel.app/itsme/index.html
 - Demo Europe Commission LiveChat: https://recognize-landing.vercel.app/europe-contact-page/index.html
 
