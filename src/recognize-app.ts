@@ -1,17 +1,17 @@
 import {
-  IAppAccessors,
-  IConfigurationExtend,
-  IHttp,
-  ILogger,
-  IModify,
-  IPersistence,
-  IRead,
+    IAppAccessors,
+    IConfigurationExtend,
+    IHttp,
+    ILogger,
+    IModify,
+    IPersistence,
+    IRead,
 } from '@rocket.chat/apps-engine/definition/accessors';
-import {ApiSecurity, ApiVisibility} from '@rocket.chat/apps-engine/definition/api';
-import {App} from '@rocket.chat/apps-engine/definition/App';
-import {IAppInfo} from '@rocket.chat/apps-engine/definition/metadata';
+import { ApiSecurity, ApiVisibility } from '@rocket.chat/apps-engine/definition/api';
+import { App } from '@rocket.chat/apps-engine/definition/App';
+import { IAppInfo } from '@rocket.chat/apps-engine/definition/metadata';
 import { UIKitBlockInteractionContext } from '@rocket.chat/apps-engine/definition/uikit';
-import {VerifyCommand} from './commands/verify';
+import { VerifyCommand } from './commands/verify';
 import VerifyUserEndpoint from './endpoints/verify-user.endpoint';
 
 export class RecognizeApp extends App {
@@ -19,16 +19,16 @@ export class RecognizeApp extends App {
         super(info, logger, accessors);
     }
 
-  public async executeBlockActionHandler(context: UIKitBlockInteractionContext, _read: IRead, _http: IHttp, _persistence: IPersistence, modify: IModify) {
-    const data = context.getInteractionData();
+    public async executeBlockActionHandler(context: UIKitBlockInteractionContext, _read: IRead, _http: IHttp, _persistence: IPersistence, modify: IModify) {
+        const data = context.getInteractionData();
 
-    const logger = this.getLogger();
-    logger.warn('button pressed');
+        const logger = this.getLogger();
+        logger.warn('button pressed');
 
-    return {
-      success: true,
-    };
-  }
+        return {
+            success: true,
+        };
+    }
 
     public async extendConfiguration(
         configuration: IConfigurationExtend,
