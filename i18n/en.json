@@ -1,0 +1,16 @@
+{
+  "enabled_identification_services": "Enabled identification services",
+  "enabled_identification_services_description": "List of all enabled identification services that are shown when using the /verify command",
+  "enabled_identification_services_itsme": "Itsme®",
+  "enabled_identification_services_pexip": "Pexip",
+  "itsme_client_id": "Client ID",
+  "itsme_client_id_description": "This is the client ID you received when registering your project in the itsme® B2B portal.",
+  "itsme_client_secret": "Client Secret",
+  "itsme_client_secret_description": "This is the client Secret you received when registering your project in the itsme® B2B portal.",
+  "pexip_base_url": "Pexip Base URL",
+  "pexip_base_url_description": "The URL where Pexip is running.",
+  "pexip_username": "Pexip Username",
+  "pexip_username_description": "API Username for the Pexip instance",
+  "pexip_password": "Pexip Password",
+  "pexip_password_description": "The password to use along with the API Username."
+}
