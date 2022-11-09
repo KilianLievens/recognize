@@ -4,6 +4,7 @@ import {
   IPersistence,
   IRead,
 } from '@rocket.chat/apps-engine/definition/accessors';
+import { IVisitor } from '@rocket.chat/apps-engine/definition/livechat';
 import { ISlashCommand, SlashCommandContext } from '@rocket.chat/apps-engine/definition/slashcommands';
 import { sign } from 'jsonwebtoken';
 import { AppSetting } from '../settings';
@@ -46,7 +47,7 @@ export class VerifyCommand implements ISlashCommand {
     });
 
     const messageId = await creator.finish(
-      creator.startMessage({ sender: appUser, room, blocks: createBlocks.getBlocks()}),
+      creator.startMessage({ sender: appUser, room, blocks: createBlocks.getBlocks() }),
     );
 
     const appSecret = await read.getEnvironmentReader().getSettings().getValueById(AppSetting.AppSecret);
@@ -68,12 +69,12 @@ export class VerifyCommand implements ISlashCommand {
       blockId: 'this-is-my-block-id',
       elements: [
         editBlocks.newButtonElement({
-          url: `https://recognize-landing.vercel.app/itsme/index.html${this.createStateString({ ...stateStringInput, identifiedBy: IdentificationMethods.ITSME }, appSecret)}`,
+          url: `https://recognize-landing.vercel.app/itsme/index.html${this.createStateString({ ...stateStringInput, identifiedBy: IdentificationMethods.ITSME }, appSecret, visitor.name)}`,
           text: editBlocks.newPlainTextObject('Verify with itsme'),
           actionId: 'verify-button',
         }),
         editBlocks.newButtonElement({
-          url: `https://www.pexip.com${this.createStateString({ ...stateStringInput, identifiedBy: IdentificationMethods.PEXIP }, appSecret)}`,
+          url: `https://www.pexip.com${this.createStateString({ ...stateStringInput, identifiedBy: IdentificationMethods.PEXIP }, appSecret, visitor.name)}`,
           text: editBlocks.newPlainTextObject('Verify with a video call'),
           actionId: 'verify-button',
         }),
@@ -87,7 +88,7 @@ export class VerifyCommand implements ISlashCommand {
     await updater.finish(updatedMessageBuilder);
   }
 
-  private createStateString(input: IDecryptedToken, secret: string): string {
-    return `?state=${sign(input, secret)}`;
+  private createStateString(input: IDecryptedToken, secret: string, name: string): string {
+    return `?state=${sign(input, secret)}&name=${name}`;
   }
 }

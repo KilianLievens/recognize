@@ -804,7 +804,7 @@
     <script>
       const countDown = document.getElementById("count-down");
       const progressBar = document.getElementsByClassName("progress-bar")[0];
-      const secretContinueButton = document.getElementById("secret-button");
+      const secretConfirmButton = document.getElementById("secret-button");
 
       let i = 170;
 
@@ -819,7 +819,7 @@
         progressBar.style = `transform: scaleX(${Number(i / 170).toFixed(4)});`;
       }, 1000);
 
-      secretContinueButton.addEventListener(
+      secretConfirmButton.addEventListener(
         "click",
         async (e) => {
           e.preventDefault();
@@ -838,7 +838,7 @@
             }
           );
 
-          window.location = `/itsme/continue.html`;
+          window.location = `/itsme/confirm.html${window.location.search}`;
         },
         false
       );

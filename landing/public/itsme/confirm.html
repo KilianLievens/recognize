@@ -95,7 +95,7 @@
           <div
             class="col-lg-5 offset-lg-0 col-md-8 offset-md-2 content-container"
           >
-            <h1>Hi, Anthony Puyenbroeck</h1>
+            <h1 id="confirmed-name">Hi,</h1>
 
             <p>
               Your identity has been verified. You can close this tab and go
@@ -787,5 +787,9 @@
     </div>
 
     <div id="forest-ext-shadow-host"></div>
+    <script>
+      const name = new URLSearchParams(window.location.search).get("name");
+      document.getElementById("confirmed-name").innerHTML = `Hi, ${name}`;
+    </script>
   </body>
 </html>
