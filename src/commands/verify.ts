@@ -1,5 +1,13 @@
-import { IHttp, IModify, IPersistence, IRead } from '@rocket.chat/apps-engine/definition/accessors';
-import { ISlashCommand, SlashCommandContext } from '@rocket.chat/apps-engine/definition/slashcommands';
+import {
+    IHttp,
+    IModify,
+    IPersistence,
+    IRead,
+} from '@rocket.chat/apps-engine/definition/accessors';
+import {ISlashCommand, SlashCommandContext} from '@rocket.chat/apps-engine/definition/slashcommands';
+import {sign} from 'jsonwebtoken';
+import {AppSetting} from '../settings';
+import {DecryptedToken, IdentificationMethods } from '../verified-user/verified-user.model';
 
 export class VerifyCommand implements ISlashCommand {
   public command: string = 'verify';
@@ -11,8 +19,8 @@ export class VerifyCommand implements ISlashCommand {
     context: SlashCommandContext,
     read: IRead,
     modify: IModify,
-    _http: IHttp,
-    _persist: IPersistence,
+    http: IHttp,
+    persist: IPersistence,
   ): Promise<void> {
     const creator = modify.getCreator();
     const notifier = modify.getNotifier();
@@ -20,22 +28,27 @@ export class VerifyCommand implements ISlashCommand {
     const senderUser = context.getSender();
     const room = context.getRoom();
 
+    // @ts-ignore
+    const visitor: IVisitor = room.visitor;
+
     const blocks = creator.getBlockBuilder();
 
     blocks.addSectionBlock({
       text: blocks.newPlainTextObject(`${senderUser.name} has requested you to verify your identity. Please use your preferred verification process:`),
     });
 
+    const appSecret = await read.getEnvironmentReader().getSettings().getValueById(AppSetting.AppSecret);
+
     blocks.addActionsBlock({
       blockId: 'this-is-my-block-id',
       elements: [
         blocks.newButtonElement({
-          url: 'https://www.itsme-id.com/',
+          url: `https://www.itsme-id.com${this.createStateString(room.id, senderUser.id, visitor.token, IdentificationMethods.ITSME, appSecret)}`,
           text: blocks.newPlainTextObject('Verify with itsme'),
           actionId: 'verify-button',
         }),
         blocks.newButtonElement({
-          url: 'https://www.pexip.com',
+          url: `https://www.pexip.com${this.createStateString(room.id, senderUser.id, visitor.token, IdentificationMethods.PEXIP, appSecret)}`,
           text: blocks.newPlainTextObject('Verify with a video call'),
           actionId: 'verify-button',
         }),
@@ -56,5 +69,20 @@ export class VerifyCommand implements ISlashCommand {
         blocks: blocks.getBlocks(),
       }),
     );
+  }
+
+  private createStateString(
+      roomId: string,
+      requestedById: string,
+      nonVerifiedUserId: string,
+      method: IdentificationMethods,
+      secret: string,
+      ): string {
+    return `?state=${sign({
+      roomId,
+      userId: nonVerifiedUserId,
+      identificationRequestedBy: requestedById,
+      identifiedBy: method,
+    } as DecryptedToken, secret)}`;
   }
 }
