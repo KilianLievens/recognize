@@ -4,7 +4,8 @@
   "description": "Get to know people.",
   "main": "src/recognize-app.ts",
   "scripts": {
-    "rc-apps": "rc-apps"
+    "rc-apps": "rc-apps",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'"
   },
   "repository": {
     "type": "git",

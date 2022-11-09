@@ -20,7 +20,7 @@ export class RecognizeApp extends App {
         super(info, logger, accessors);
     }
 
-    public async executeBlockActionHandler(context: UIKitBlockInteractionContext, _read: IRead, _http: IHttp, _persistence: IPersistence, modify: IModify) {
+    public async executeBlockActionHandler(context: UIKitBlockInteractionContext) {
         const data = context.getInteractionData();
 
         const logger = this.getLogger();

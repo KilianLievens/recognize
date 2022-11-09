@@ -10,17 +10,17 @@ import VerifiedUserPersistence from '../verified-user/verified-user.persistence'
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'content-type',
-  'Access-Control-Allow-Methods': 'POST'
-}
+  'Access-Control-Allow-Methods': 'POST',
+};
 
 export default class VerifyUserEndpoint extends ApiEndpoint {
   public path = 'verify-user';
 
-  public async options(request: IApiRequest, endpoint: IApiEndpointInfo, read: IRead, modify: IModify, http: IHttp, persis: IPersistence): Promise<IApiResponseJSON> {
+  public async options(): Promise<IApiResponseJSON> {
     return this.json({
       status: 200,
-      headers: corsHeaders
-    })
+      headers: corsHeaders,
+    });
   }
 
   public async post(
@@ -33,7 +33,7 @@ export default class VerifyUserEndpoint extends ApiEndpoint {
     if (state == null) {
       return this.json({
         status: 400,
-        headers: corsHeaders
+        headers: corsHeaders,
       });
     }
 
@@ -81,14 +81,14 @@ export default class VerifyUserEndpoint extends ApiEndpoint {
 
       return this.json({
         status: 200,
-        headers: corsHeaders
+        headers: corsHeaders,
       });
     } catch (e) {
       console.log(e);
 
       return this.json({
         status: 500,
-        headers: corsHeaders
+        headers: corsHeaders,
       });
     }
   }
