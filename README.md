@@ -2,6 +2,11 @@
 
 Get to know people.
 
+## Links
+
+- Demo Itsme® page: https://recognize-landing.vercel.app/itsme/index.html
+- Demo Europe Commission LiveChat: https://recognize-landing.vercel.app/europe-contact-page/index.html
+
 ## Getting Started
 
 Now that you have generated a blank default Rocket.Chat App, what are you supposed to do next?
