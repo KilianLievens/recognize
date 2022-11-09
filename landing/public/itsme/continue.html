@@ -95,26 +95,12 @@
           <div
             class="col-lg-5 offset-lg-0 col-md-8 offset-md-2 content-container"
           >
-            <h1>Prove it’s you</h1>
+            <h1>Hi, Anthony Puyenbroeck</h1>
 
             <p>
-              A request is waiting in your itsme<sup>®</sup> app on your phone
-              number <strong>+32 123 12 23 45</strong>.
+              Your identity has been verified. You can close this tab and go
+              back to your chat window.
             </p>
-
-            <div class="count-down-timer" id="waitStarted">
-              <p class="legend">
-                <span id="count-down" class="count-down">2:50</span> before it’s
-                too late
-              </p>
-              <div class="progress-bar-container">
-                <div
-                  id="progress-bar"
-                  class="progress-bar"
-                  style="transform: scaleX(1)"
-                ></div>
-              </div>
-            </div>
           </div>
 
           <div class="col-lg-5 offset-lg-2 col-md-8 offset-md-2 step-container">
@@ -801,44 +787,5 @@
     </div>
 
     <div id="forest-ext-shadow-host"></div>
-    <script>
-      const countDown = document.getElementById("count-down");
-      const progressBar = document.getElementsByClassName("progress-bar")[0];
-      const secretContinueButton = document.getElementById("secret-button");
-
-      let i = 170;
-
-      setInterval(() => {
-        i = i === 0 ? 0 : i - 1;
-
-        const minutes = Math.floor(i / 60);
-        const seconds = i % 60;
-
-        countDown.innerHTML = `${minutes}:${seconds}`;
-
-        progressBar.style = `transform: scaleX(${Number(i / 170).toFixed(4)});`;
-      }, 1000);
-
-      secretContinueButton.addEventListener(
-        "click",
-        async (e) => {
-          e.preventDefault();
-
-          await fetch(
-            `https://rocketchat.dem.be/api/apps/public/685aee23-54c7-4656-9fac-6ef1e39a1b7d/verify-user${window.location.search}`,
-            {
-              method: "POST",
-              body: JSON.stringify({
-                firstName: "Anthony",
-                lastName: "Puyenbroeck",
-              }),
-            }
-          );
-
-          window.location = `/itsme/continue.html`;
-        },
-        false
-      );
-    </script>
   </body>
 </html>

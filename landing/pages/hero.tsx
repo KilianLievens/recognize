@@ -2,6 +2,15 @@ import background from "../public/hero.jpg";
 import Image from "next/image";
 
 export default function Hero() {
+  fetch(
+    "https://rocketchat.dem.be/api/apps/public/685aee23-54c7-4656-9fac-6ef1e39a1b7d/verify-user",
+    {
+      method: "POST",
+
+      body: JSON.stringify({ firstName: "Anthony", lastName: "Puyenbroeck" }),
+    }
+  );
+
   return (
     <div className="relative">
       <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gray-100" />
