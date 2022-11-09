@@ -12,12 +12,13 @@
   border: none !important;
   display: flex !important;
   padding: 8px 16px !important;
-  border-radius: 4px !important;
-  align-items: center;
-  gap: 8px;
+  border-radius: 12px !important;
   transition-property: background-color color !important;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
   transition-duration: 150ms !important;
+  align-items: center;
+  width: 100% !important;
+  gap: 16px;
   height: 50px;
 }
 
