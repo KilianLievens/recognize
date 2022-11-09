@@ -7,7 +7,7 @@ import {
 import {ISlashCommand, SlashCommandContext} from '@rocket.chat/apps-engine/definition/slashcommands';
 import {sign} from 'jsonwebtoken';
 import {AppSetting} from '../settings';
-import {DecryptedToken, IdentificationMethods } from '../verified-user/verified-user.model';
+import {IDecryptedToken, IdentificationMethods } from '../verified-user/verified-user.model';
 
 export class VerifyCommand implements ISlashCommand {
   public command: string = 'verify';
@@ -83,6 +83,6 @@ export class VerifyCommand implements ISlashCommand {
       userId: nonVerifiedUserId,
       identificationRequestedBy: requestedById,
       identifiedBy: method,
-    } as DecryptedToken, secret)}`;
+    } as IDecryptedToken, secret)}`;
   }
 }

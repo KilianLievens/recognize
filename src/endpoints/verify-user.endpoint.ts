@@ -1,11 +1,10 @@
 import {IHttp, IModify, IPersistence, IRead} from '@rocket.chat/apps-engine/definition/accessors';
-import {ApiEndpoint, IApiEndpointInfo, IApiRequest, IApiResponse} from '@rocket.chat/apps-engine/definition/api';
+import {ApiEndpoint, IApiEndpointInfo, IApiRequest} from '@rocket.chat/apps-engine/definition/api';
 import {IApiResponseJSON} from '@rocket.chat/apps-engine/definition/api/IResponse';
-import {randomUUID} from 'crypto';
 import {verify} from 'jsonwebtoken';
 import {z} from 'zod';
 import {AppSetting} from '../settings';
-import {DecryptedToken} from '../verified-user/verified-user.model';
+import {IDecryptedToken} from '../verified-user/verified-user.model';
 import VerifiedUserPersistence from '../verified-user/verified-user.persistence';
 
 export default class VerifyUserEndpoint extends ApiEndpoint {
@@ -21,7 +20,7 @@ export default class VerifyUserEndpoint extends ApiEndpoint {
 
         try {
             const appSecret = await read.getEnvironmentReader().getSettings().getValueById(AppSetting.AppSecret);
-            const decryptedState: DecryptedToken = verify(state, appSecret) as DecryptedToken;
+            const decryptedState: IDecryptedToken = verify(state, appSecret) as IDecryptedToken;
 
             const body = z.object({
                 firstName: z.string(),

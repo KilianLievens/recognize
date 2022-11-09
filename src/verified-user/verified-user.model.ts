@@ -4,7 +4,7 @@ export enum IdentificationMethods {
     OTHER = 'OTHER',
 }
 
-export default interface VerifiedUser {
+export default interface IVerifiedUser {
     id: string;
     externalId?: string | null;
     firstName: string;
@@ -15,7 +15,7 @@ export default interface VerifiedUser {
     verifiedAt: Date;
 }
 
-export interface DecryptedToken {
+export interface IDecryptedToken {
     roomId: string;
     userId: string;
     identificationRequestedBy: string;

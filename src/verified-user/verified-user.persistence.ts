@@ -1,9 +1,9 @@
 import {IPersistence, IPersistenceRead} from '@rocket.chat/apps-engine/definition/accessors';
 import {RocketChatAssociationModel, RocketChatAssociationRecord} from '@rocket.chat/apps-engine/definition/metadata';
-import VerifiedUser from './verified-user.model';
+import IVerifiedUser from './verified-user.model';
 
 export default class VerifiedUserPersistence {
-    public static async createVerifiedUser(persistence: IPersistence, verifiedUser: VerifiedUser): Promise<boolean> {
+    public static async createVerifiedUser(persistence: IPersistence, verifiedUser: IVerifiedUser): Promise<boolean> {
         try {
             const association = new RocketChatAssociationRecord(RocketChatAssociationModel.MISC, 'verified-user');
             await persistence.createWithAssociation(verifiedUser, association);
@@ -15,8 +15,8 @@ export default class VerifiedUserPersistence {
         return true;
     }
 
-    public static async findVerifiedUsers(persistence: IPersistenceRead): Promise<Array<VerifiedUser>> {
+    public static async findVerifiedUsers(persistence: IPersistenceRead): Promise<Array<IVerifiedUser>> {
         const association = new RocketChatAssociationRecord(RocketChatAssociationModel.MISC, 'verified-user');
-        return await persistence.readByAssociation(association) as Array<VerifiedUser>;
+        return await persistence.readByAssociation(association) as Array<IVerifiedUser>;
     }
 }
