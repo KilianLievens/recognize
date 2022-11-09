@@ -4,6 +4,9 @@ export enum AppSetting {
     EnabledIdentificationServices = 'enabled_identification_services',
     ItsmeClientId = 'itsme_client_id',
     ItsmeClientSecret = 'itsme_client_secret',
+    PexipBaseUrl = 'pexip_base_url',
+    PexipUsername = 'pexip_username',
+    PexipPassword = 'pexip_password',
 }
 
 export const settings: Array<ISetting> = [
@@ -42,5 +45,37 @@ export const settings: Array<ISetting> = [
         public: false,
         i18nLabel: AppSetting.ItsmeClientSecret,
         i18nDescription: `${AppSetting.ItsmeClientSecret}_description`,
+    },
+
+    // Pexip
+    {
+        id: AppSetting.PexipBaseUrl,
+        type: SettingType.STRING,
+        section: 'Pexip',
+        packageValue: '',
+        required: false,
+        public: false,
+        i18nLabel: AppSetting.PexipBaseUrl,
+        i18nDescription: `${AppSetting.PexipBaseUrl}_description`,
+    },
+    {
+        id: AppSetting.PexipUsername,
+        type: SettingType.STRING,
+        section: 'Pexip',
+        packageValue: '',
+        required: false,
+        public: false,
+        i18nLabel: AppSetting.PexipUsername,
+        i18nDescription: `${AppSetting.PexipUsername}_description`,
+    },
+    {
+        id: AppSetting.PexipPassword,
+        type: SettingType.STRING,
+        section: 'Pexip',
+        packageValue: '',
+        required: false,
+        public: false,
+        i18nLabel: AppSetting.PexipPassword,
+        i18nDescription: `${AppSetting.PexipPassword}_description`,
     },
 ];
