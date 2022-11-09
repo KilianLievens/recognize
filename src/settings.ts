@@ -1,6 +1,7 @@
 import { ISetting, SettingType } from '@rocket.chat/apps-engine/definition/settings';
 
 export enum AppSetting {
+    AppSecret = 'recognize_app_secret',
     EnabledIdentificationServices = 'enabled_identification_services',
     ItsmeClientId = 'itsme_client_id',
     ItsmeClientSecret = 'itsme_client_secret',
@@ -14,6 +15,7 @@ export const settings: Array<ISetting> = [
     {
         id: AppSetting.EnabledIdentificationServices,
         type: SettingType.MULTI_SELECT,
+        section: 'General',
         packageValue: [],
         required: true,
         public: true,
@@ -23,6 +25,18 @@ export const settings: Array<ISetting> = [
         ],
         i18nLabel: AppSetting.EnabledIdentificationServices,
         i18nDescription: `${AppSetting.EnabledIdentificationServices}_description`,
+    },
+
+    // App secret used to generate a token
+    {
+        id: AppSetting.AppSecret,
+        type: SettingType.STRING,
+        section: 'General',
+        packageValue: '',
+        required: true,
+        public: false,
+        i18nLabel: AppSetting.AppSecret,
+        i18nDescription: `${AppSetting.AppSecret}_description`,
     },
 
     // Itsme
