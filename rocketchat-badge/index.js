@@ -6,8 +6,6 @@ const svgs = {
   badge: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.403 12.652a3 3 0 000-5.304 3 3 0 00-3.75-3.751 3 3 0 00-5.305 0 3 3 0 00-3.751 3.75 3 3 0 000 5.305 3 3 0 003.75 3.751 3 3 0 005.305 0 3 3 0 003.751-3.75zm-2.546-4.46a.75.75 0 00-1.214-.883l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>`,
 };
 
-const verifiedUsers = new Set(["crazyflorry"]);
-
 function createVerifiedBadge() {
   const verifiedBadge = document.createElement("div");
 
@@ -18,7 +16,12 @@ function createVerifiedBadge() {
   return verifiedBadge;
 }
 
-setInterval(() => {
+setInterval(async () => {
+  const verifiedUserResponse = await fetch(
+    "/api/apps/public/685aee23-54c7-4656-9fac-6ef1e39a1b7d/verify-user"
+  );
+  const verifiedUsers = new Set(await verifiedUserResponse.json());
+
   document.querySelectorAll(".rcx-message-header__name").forEach((element) => {
     const username = element.dataset.username;
 
@@ -54,7 +57,10 @@ setInterval(() => {
 
     // Todo: better detection which button it is.
     // Would be nice if we could set something with data attributes
-    else if (element.href?.includes("pexip")) {
+    else if (
+      element.href?.includes("pexip") ||
+      element.href?.includes("skedify")
+    ) {
       element.classList.add("styled", "verify-button", "verify-button-pexip");
 
       element.innerHTML = `
