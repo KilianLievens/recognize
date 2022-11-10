@@ -6,10 +6,10 @@ import {
 } from '@rocket.chat/apps-engine/definition/accessors';
 import { IVisitor } from '@rocket.chat/apps-engine/definition/livechat';
 import { ISlashCommand, SlashCommandContext } from '@rocket.chat/apps-engine/definition/slashcommands';
+import { IButtonElement } from '@rocket.chat/apps-engine/definition/uikit';
 import { sign } from 'jsonwebtoken';
 import { AppSetting } from '../settings';
 import { IDecryptedToken, IdentificationMethods } from '../verified-user/verified-user.model';
-import {IButtonElement} from "@rocket.chat/apps-engine/definition/uikit";
 
 export class VerifyCommand implements ISlashCommand {
   public command: string = 'verify';
@@ -60,6 +60,7 @@ export class VerifyCommand implements ISlashCommand {
     const appSecret = await read.getEnvironmentReader().getSettings().getValueById(AppSetting.AppSecret);
     const enabledIntegrations = await read.getEnvironmentReader().getSettings().getValueById(AppSetting.EnabledIdentificationServices);
     const integrationBlockElements: Array<IButtonElement> = [];
+    let pexipToken: string | null = null;
 
     const stateStringInput: Omit<IDecryptedToken, 'identifiedBy' | 'redirectLocation'> = {
       roomId: room.id,
@@ -73,17 +74,19 @@ export class VerifyCommand implements ISlashCommand {
       const itsmeBaseUrl = await read.getEnvironmentReader().getSettings().getValueById(AppSetting.ItsmeBaseUrl);
       integrationBlockElements.push(editBlocks.newButtonElement({
         url: `${itsmeBaseUrl}${this.createStateString({ ...stateStringInput, identifiedBy: IdentificationMethods.ITSME, redirectLocation: itsmeBaseUrl }, appSecret, visitor.name)}`,
-        text: editBlocks.newPlainTextObject('Verify with itsme'),
+        text: editBlocks.newPlainTextObject('Verify with itsme®'),
         actionId: 'verify-button',
       }));
     }
 
     if (enabledIntegrations.includes('pexip')) {
       const pexipBaseUrl = await read.getEnvironmentReader().getSettings().getValueById(AppSetting.PexipBaseUrl);
+      pexipToken = this.createStateString({ ...stateStringInput, identifiedBy: IdentificationMethods.PEXIP, redirectLocation: pexipBaseUrl }, appSecret, visitor.name, true);
+
       integrationBlockElements.push(editBlocks.newButtonElement({
-        url: `/api/apps/public/685aee23-54c7-4656-9fac-6ef1e39a1b7d/redirect-endpoint${this.createStateString({ ...stateStringInput, identifiedBy: IdentificationMethods.PEXIP, redirectLocation: pexipBaseUrl }, appSecret, visitor.name)}`,
+        url: `${pexipBaseUrl}${this.createStateString({ ...stateStringInput, identifiedBy: IdentificationMethods.PEXIP, redirectLocation: pexipBaseUrl }, appSecret, visitor.name)}`,
         text: editBlocks.newPlainTextObject('Verify with a video call'),
-        actionId: 'verify-button',
+        actionId: 'input-verification',
       }));
     }
 
@@ -92,7 +95,7 @@ export class VerifyCommand implements ISlashCommand {
     }
 
     editBlocks.addActionsBlock({
-      blockId: 'this-is-my-block-id',
+      blockId: pexipToken ?? 'verification-standard-block-id',
       elements: integrationBlockElements,
     });
 
@@ -103,7 +106,10 @@ export class VerifyCommand implements ISlashCommand {
     await updater.finish(updatedMessageBuilder);
   }
 
-  private createStateString(input: IDecryptedToken, secret: string, name: string): string {
+  private createStateString(input: IDecryptedToken, secret: string, name: string, tokenOnly: boolean = false): string {
+    if (tokenOnly) {
+      return sign(input, secret);
+    }
     return `?state=${sign(input, secret)}&name=${name}`;
   }
 }
