@@ -3,6 +3,7 @@ import { ISetting, SettingType } from '@rocket.chat/apps-engine/definition/setti
 export enum AppSetting {
     AppSecret = 'recognize_app_secret',
     EnabledIdentificationServices = 'enabled_identification_services',
+    ItsmeBaseUrl = 'itsme_base_url',
     ItsmeClientId = 'itsme_client_id',
     ItsmeClientSecret = 'itsme_client_secret',
     PexipBaseUrl = 'pexip_base_url',
@@ -40,6 +41,16 @@ export const settings: Array<ISetting> = [
     },
 
     // Itsme
+    {
+        id: AppSetting.ItsmeBaseUrl,
+        type: SettingType.STRING,
+        section: 'Itsme',
+        packageValue: '',
+        required: false,
+        public: false,
+        i18nLabel: AppSetting.ItsmeBaseUrl,
+        i18nDescription: `${AppSetting.ItsmeBaseUrl}_description`,
+    },
     {
         id: AppSetting.ItsmeClientId,
         type: SettingType.STRING,

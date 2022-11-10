@@ -23,4 +23,5 @@ export interface IDecryptedToken {
     identifiedBy: IdentificationMethods;
     verificationMessageId: string;
     username: string;
+    redirectLocation: string;
 }

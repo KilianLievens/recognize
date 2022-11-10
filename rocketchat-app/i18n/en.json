@@ -5,6 +5,8 @@
   "enabled_identification_services_pexip": "Pexip",
   "recognize_app_secret": "App secret",
   "recognize_app_secret_description": "App secret used by the Recognize App to securely generate unique tokens",
+  "itsme_base_url": "Itsme® Base URL",
+  "itsme_base_url_description": "This is the base URL you received when registering your project in the itsme® B2B portal.",
   "itsme_client_id": "Itsme® Client ID",
   "itsme_client_id_description": "This is the client ID you received when registering your project in the itsme® B2B portal.",
   "itsme_client_secret": "Itsme® Client Secret",

@@ -9,6 +9,7 @@ import { ISlashCommand, SlashCommandContext } from '@rocket.chat/apps-engine/def
 import { sign } from 'jsonwebtoken';
 import { AppSetting } from '../settings';
 import { IDecryptedToken, IdentificationMethods } from '../verified-user/verified-user.model';
+import {IButtonElement} from "@rocket.chat/apps-engine/definition/uikit";
 
 export class VerifyCommand implements ISlashCommand {
   public command: string = 'verify';
@@ -50,9 +51,17 @@ export class VerifyCommand implements ISlashCommand {
       creator.startMessage({ sender: appUser, room, blocks: createBlocks.getBlocks() }),
     );
 
-    const appSecret = await read.getEnvironmentReader().getSettings().getValueById(AppSetting.AppSecret);
+    const editBlocks = creator.getBlockBuilder();
 
-    const stateStringInput: Omit<IDecryptedToken, 'identifiedBy'> = {
+    editBlocks.addSectionBlock({
+      text: editBlocks.newPlainTextObject(`${senderUser.name} has requested you to verify your identity. Please use your preferred verification process:`),
+    });
+
+    const appSecret = await read.getEnvironmentReader().getSettings().getValueById(AppSetting.AppSecret);
+    const enabledIntegrations = await read.getEnvironmentReader().getSettings().getValueById(AppSetting.EnabledIdentificationServices);
+    const integrationBlockElements: Array<IButtonElement> = [];
+
+    const stateStringInput: Omit<IDecryptedToken, 'identifiedBy' | 'redirectLocation'> = {
       roomId: room.id,
       userToken: visitor.token,
       identificationRequestedBy: senderUser.id,
@@ -60,26 +69,31 @@ export class VerifyCommand implements ISlashCommand {
       username: visitor.username,
     };
 
-    const editBlocks = creator.getBlockBuilder();
+    if (enabledIntegrations.includes('itsme')) {
+      const itsmeBaseUrl = await read.getEnvironmentReader().getSettings().getValueById(AppSetting.ItsmeBaseUrl);
+      integrationBlockElements.push(editBlocks.newButtonElement({
+        url: `${itsmeBaseUrl}${this.createStateString({ ...stateStringInput, identifiedBy: IdentificationMethods.ITSME, redirectLocation: itsmeBaseUrl }, appSecret, visitor.name)}`,
+        text: editBlocks.newPlainTextObject('Verify with itsme'),
+        actionId: 'verify-button',
+      }));
+    }
 
-    editBlocks.addSectionBlock({
-      text: editBlocks.newPlainTextObject(`${senderUser.name} has requested you to verify your identity. Please use your preferred verification process:`),
-    });
+    if (enabledIntegrations.includes('pexip')) {
+      const pexipBaseUrl = await read.getEnvironmentReader().getSettings().getValueById(AppSetting.PexipBaseUrl);
+      integrationBlockElements.push(editBlocks.newButtonElement({
+        url: `${pexipBaseUrl}${this.createStateString({ ...stateStringInput, identifiedBy: IdentificationMethods.PEXIP, redirectLocation: pexipBaseUrl }, appSecret, visitor.name)}`,
+        text: editBlocks.newPlainTextObject('Verify with a video call'),
+        actionId: 'verify-button',
+      }));
+    }
+
+    if (enabledIntegrations.length === 0) {
+      editBlocks.newPlainTextObject('No enabled verification integrations, please contact your system administrator to get you started.');
+    }
 
     editBlocks.addActionsBlock({
       blockId: 'this-is-my-block-id',
-      elements: [
-        editBlocks.newButtonElement({
-          url: `https://recognize-landing.vercel.app/itsme/index.html${this.createStateString({ ...stateStringInput, identifiedBy: IdentificationMethods.ITSME }, appSecret, visitor.name)}`,
-          text: editBlocks.newPlainTextObject('Verify with itsme'),
-          actionId: 'verify-button',
-        }),
-        editBlocks.newButtonElement({
-          url: `https://www.pexip.com${this.createStateString({ ...stateStringInput, identifiedBy: IdentificationMethods.PEXIP }, appSecret, visitor.name)}`,
-          text: editBlocks.newPlainTextObject('Verify with a video call'),
-          actionId: 'verify-button',
-        }),
-      ],
+      elements: integrationBlockElements,
     });
 
     const updatedMessageBuilder = await updater.message(messageId, appUser);
