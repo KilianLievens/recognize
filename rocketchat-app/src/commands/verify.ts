@@ -81,7 +81,7 @@ export class VerifyCommand implements ISlashCommand {
     if (enabledIntegrations.includes('pexip')) {
       const pexipBaseUrl = await read.getEnvironmentReader().getSettings().getValueById(AppSetting.PexipBaseUrl);
       integrationBlockElements.push(editBlocks.newButtonElement({
-        url: `${pexipBaseUrl}${this.createStateString({ ...stateStringInput, identifiedBy: IdentificationMethods.PEXIP, redirectLocation: pexipBaseUrl }, appSecret, visitor.name)}`,
+        url: `/api/apps/public/685aee23-54c7-4656-9fac-6ef1e39a1b7d/redirect-endpoint${this.createStateString({ ...stateStringInput, identifiedBy: IdentificationMethods.PEXIP, redirectLocation: pexipBaseUrl }, appSecret, visitor.name)}`,
         text: editBlocks.newPlainTextObject('Verify with a video call'),
         actionId: 'verify-button',
       }));
