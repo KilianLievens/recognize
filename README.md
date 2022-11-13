@@ -15,6 +15,16 @@ If you would to get to know us, shoot us a message on [rocket.chat](https://rock
 - Demo Itsme® page: https://recognize-landing.vercel.app/itsme/index.html
 - Demo Europe Commission LiveChat: https://recognize-landing.vercel.app/europe-contact-page/index.html
 
+## Table of Contents
+
+- [Documentation](#documentation)
+- [Installation instructions](#Installation-instructions)
+- [Identity Provider instructions](#Identity-Provider-instructions)
+  - [Setting up itsme®](#Setting-up-itsme)
+  - [Setting up Pexip](#Setting-up-Pexip)
+  - [Adding metadata](#Adding-metadata)
+  - [Integrating your own identity provider](#Integrating-your-own-identity-provider)
+
 ## Documentation
 
 An example flow of a Recognize powered rocket.chat exchange between a citizen and service provider.
@@ -44,12 +54,27 @@ Here are some links to examples and documentation:
 
 ### Setup the project
 
-Clone this repository, and copy the `.rcappsconfig.example` to `.rcappsconfig`. Fill in the `userId` and `token` that you can generate here under your account.
+Clone this repository, and copy the `.rcappsconfig.example` to `.rcappsconfig`. Fill in the `userId` and `token` that you can generate from your account detail page.
 
 ```bash
 npm install
 npm run rc-apps deploy
 ```
+
+### Add custom CSS and JS
+
+Because we are not able to style buttons using UIKit, or to add a custom verification badge next to a username, we decided to provide custom CSS and JS.
+
+1. Add custom CSS
+
+   - Navigate to Admin
+   - Open the Layout Settings
+   - Edit the custom CSS to contain the CSS provided [here](https://github.com/KilianLievens/recognize/blob/main/rocketchat-badge/index.css)
+
+2. Add custom JS
+   - Navigate to Admin
+   - Open the Layout Settings
+   - Edit the custom Script for Llogged In Users to contain the JS provided [here](https://github.com/KilianLievens/recognize/blob/main/rocketchat-badge/index.js)
 
 ## Identity Provider instructions
 
