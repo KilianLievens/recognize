@@ -15,6 +15,16 @@ If you would to get to know us, shoot us a message on [rocket.chat](https://rock
 - Demo Itsme® page: https://recognize-landing.vercel.app/itsme/index.html
 - Demo Europe Commission LiveChat: https://recognize-landing.vercel.app/europe-contact-page/index.html
 
+## Table of Contents
+
+- [Documentation](#documentation)
+- [Installation instructions](#Installation-instructions)
+- [Identity Provider instructions](#Identity-Provider-instructions)
+  - [Setting up itsme®](#Setting-up-itsme®)
+  - [Setting up Pexip](#Setting-up-Pexip)
+  - [Adding metadata](#Adding-metadata)
+  - [Integrating your own identity provider](#Integrating-your-own-identity-provider)
+
 ## Documentation
 
 An example flow of a Recognize powered rocket.chat exchange between a citizen and service provider.
