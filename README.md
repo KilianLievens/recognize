@@ -1,9 +1,9 @@
-# Recognize
+# RocketGov Hackathon - Recognize
 
 Get to know people. \
 If you would to get to know us, shoot us a message on [rocket.chat](https://rocketchat.dem.be/)!
 
-## Team
+## Team Legends of the Puyenbroeck
 
 - [Florian Van Damme](https://www.linkedin.com/in/florian-van-damme-5b0187105/)
 - [Demian Dekoninck](https://www.linkedin.com/in/demiandekoninck/)
@@ -27,19 +27,19 @@ If you would to get to know us, shoot us a message on [rocket.chat](https://rock
 
 ## Documentation
 
-An example flow of a Recognize powered rocket.chat exchange between a citizen and service provider.
+Public sector service providers, like governments, are limited in their digital communication options to external individuals. This limitation stems from a lack of necessary trust between both parties. If these service providers would like to leverage the full power of their digital tools, they need to have a robust identification system in place.
+
+Recognize is a rocket.chat native application that aims to provide this necessary trust. We do so by integrating the mélange of different European solutions in one simple slash command. After installation, service providers can easily start an identification flow giving non-identified users a set of different identification methods, adjusted to their local administration. A service provider from Belgium can activate the itsme® integration, other countries can activate an integration native to their administration.
+
+For the tough cases we also provide a fallback solution using private and secure video communication powered by Pexip. All integrations offered by Recognize are customizable and extensible.
+
+Using Recognize, service providers can leverage their pre-existing partnerships and digital infrastructure resulting in a higher return on the initial investment and accelerating the speed of implementation.
+
+Recognize is an open source project, which is free to install but has ambitions for a premium priced plan offering a fixed cost per unique identification per year.
+
+Below, you can find an example flow of a Recognize powered rocket.chat exchange between a citizen and service provider:
+
 ![A Recognize rocket.chat flow](https://i.imgur.com/1eVEIzW.png)
-
-Here are some links to examples and documentation:
-
-- [Rocket.Chat Apps TypeScript Definitions Documentation](https://rocketchat.github.io/Rocket.Chat.Apps-engine/)
-- [Rocket.Chat Apps TypeScript Definitions Repository](https://github.com/RocketChat/Rocket.Chat.Apps-engine)
-- [Example Rocket.Chat Apps](https://github.com/graywolf336/RocketChatApps)
-- Community Forums
-  - [App Requests](https://forums.rocket.chat/c/rocket-chat-apps/requests)
-  - [App Guides](https://forums.rocket.chat/c/rocket-chat-apps/guides)
-  - [Top View of Both Categories](https://forums.rocket.chat/c/rocket-chat-apps)
-- [#rocketchat-apps on Open.Rocket.Chat](https://open.rocket.chat/channel/rocketchat-apps)
 
 ## Installation instructions
 
