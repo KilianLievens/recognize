@@ -287,7 +287,11 @@ export default function Example() {
                 </div>
               </div>
               <div className="my-12 sm:mt-16 lg:col-start-2 lg:mt-0 flex items-center justify-center">
-                <Image src={eurobarometer} className="w-96 " />
+                <Image
+                  src={eurobarometer}
+                  className="w-96"
+                  alt="Eurobarometer logo"
+                />
               </div>
             </div>
 
