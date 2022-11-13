@@ -51,6 +51,21 @@ npm install
 npm run rc-apps deploy
 ```
 
+### Add custom CSS and JS
+
+Because we are not able to style buttons using UIKit, or to add a custom verification badge next to a username, we decided to provide custom CSS and JS.
+
+1. Add custom CSS
+
+   - Navigate to Admin
+   - Open the Layout Settings
+   - Edit the custom CSS to contain the CSS provided [here](https://github.com/KilianLievens/recognize/blob/main/rocketchat-badge/index.css)
+
+2. Add custom JS
+   - Navigate to Admin
+   - Open the Layout Settings
+   - Edit the custom Script for Llogged In Users to contain the JS provided [here](https://github.com/KilianLievens/recognize/blob/main/rocketchat-badge/index.js)
+
 ## Identity Provider instructions
 
 ### Setting up itsme®
