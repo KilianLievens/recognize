@@ -20,7 +20,7 @@ If you would to get to know us, shoot us a message on [rocket.chat](https://rock
 - [Documentation](#documentation)
 - [Installation instructions](#Installation-instructions)
 - [Identity Provider instructions](#Identity-Provider-instructions)
-  - [Setting up itsme®](#Setting-up-itsme®)
+  - [Setting up itsme®](#Setting-up-itsme)
   - [Setting up Pexip](#Setting-up-Pexip)
   - [Adding metadata](#Adding-metadata)
   - [Integrating your own identity provider](#Integrating-your-own-identity-provider)
@@ -54,7 +54,7 @@ Here are some links to examples and documentation:
 
 ### Setup the project
 
-Clone this repository, and copy the `.rcappsconfig.example` to `.rcappsconfig`. Fill in the `userId` and `token` that you can generate here under your account.
+Clone this repository, and copy the `.rcappsconfig.example` to `.rcappsconfig`. Fill in the `userId` and `token` that you can generate from your account detail page.
 
 ```bash
 npm install
