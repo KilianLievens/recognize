@@ -3,6 +3,12 @@
 Get to know people. \
 If you would to get to know us, shoot us a message on [rocket.chat](https://rocketchat.dem.be/)!
 
+## Team
+
+- [Florian Van Damme](https://www.linkedin.com/in/florian-van-damme-5b0187105/)
+- [Demian Dekoninck](https://www.linkedin.com/in/demiandekoninck/)
+- [Kilian Lievens](https://www.linkedin.com/in/kilian-lievens-231743153/)
+
 ## Links
 
 - Landing page: https://recognize-landing.vercel.app
