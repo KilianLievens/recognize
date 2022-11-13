@@ -40,3 +40,27 @@ Clone this repository, and copy the `.rcappsconfig.example` to `.rcappsconfig`. 
 npm install
 npm run rc-apps deploy
 ```
+
+## Identity Provider instructions
+
+### Setting up itsme®
+
+Navigate to `apps` -> `Recognize` -> `settings` in your rocket.chat instance.
+The first step is to enable the itsme® integration, this is done by selecting it from the dropdown in the Enabled identification services.
+
+After the itsme® integration is enabled, please provide the application with your client id and secret pair, along with the base URL of your itsme® instance.
+
+See below screenshot for an example integration.
+![itsme settings](https://i.imgur.com/XkO6ibv.jpeg)
+
+### Setting up Pexip
+
+Navigate to `apps` -> `Recognize` -> `settings` in your rocket.chat instance.
+The first step is to enable the Pexip integration, this is done by selecting it from the dropdown in the Enabled identification services.
+
+After the Pexip integration is enabled, please provide the application with your username and password, along with the base URL of your Pexip management node.
+Ensure that your management node is exposed to the public internet and has username / password authentication enabled. In addition, your instance needs to have a policy server that supports ad-hoc VMR creation. For additional information, please check [the official Pexip documentation](https://docs.pexip.com/admin/external_policy.htm) on how to do so.
+
+See below screenshot for an example integration.
+![Pexip settings](https://i.imgur.com/8UKGuH9.jpg)
+
