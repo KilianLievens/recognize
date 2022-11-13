@@ -55,6 +55,7 @@ export default class VerifyUserEndpoint extends ApiEndpoint {
       const body = z.object({
         firstName: z.string(),
         lastName: z.string(),
+        meta: z.optional(z.any()),
       }).parse(request.content);
 
       // We should map whatever response we get a User object
@@ -65,6 +66,7 @@ export default class VerifyUserEndpoint extends ApiEndpoint {
         lastName: body.lastName,
         identificationRequestedBy: decryptedState.identificationRequestedBy,
         identifiedBy: decryptedState.identifiedBy,
+        meta: body.meta,
         signature: state,
         username: decryptedState.username,
       });

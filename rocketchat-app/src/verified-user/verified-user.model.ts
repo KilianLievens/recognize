@@ -11,6 +11,7 @@ export default interface IVerifiedUser {
     lastName: string;
     identifiedBy: IdentificationMethods;
     identificationRequestedBy: string;
+    meta: any;
     signature: string;
     username: string;
     verifiedAt: Date;
