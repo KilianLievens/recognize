@@ -3,6 +3,11 @@
 Get to know people. \
 If you would to get to know us, shoot us a message on [rocket.chat](https://rocketchat.dem.be/)!
 
+<p style="text-align:center">
+  <img style="float: left;" src="./.github/images/livechat-verify.png" width=40%>
+  <img style="float: right;" src="./.github/images/verify-badge.png" width=40%>
+</p>
+
 ## Team Legends of the Puyenbroeck
 
 - [Florian Van Damme](https://www.linkedin.com/in/florian-van-damme-5b0187105/)
