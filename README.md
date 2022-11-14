@@ -19,6 +19,7 @@ If you would to get to know us, shoot us a message on [rocket.chat](https://rock
 - Landing page: https://recognize-landing.vercel.app
 - Demo Itsme® page: https://recognize-landing.vercel.app/itsme/index.html
 - Demo Europe Commission LiveChat: https://recognize-landing.vercel.app/europe-contact-page/index.html
+- Deliverables: https://eventornado.com/submission/digital-passport
 
 ## Table of Contents
 
