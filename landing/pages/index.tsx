@@ -168,16 +168,16 @@ export default function Example() {
               </h2>
               <div className="mt-6 space-y-4 sm:flex sm:space-y-0 sm:space-x-5">
                 <a
-                  href="#"
+                  href="https://github.com/KilianLievens/recognize#installation-instructions"
                   className="flex items-center justify-center rounded-md border border-transparent text-white px-4 py-3 text-base font-medium  shadow-sm bg-emerald-900"
                 >
                   Get started
                 </a>
                 <a
-                  href="https://github.com/KilianLievens/recognize#installation-instructions"
+                  href="https://rocketchat.dem.be"
                   className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-emerald-700 shadow-sm"
                 >
-                  Get started
+                  Live demo
                 </a>
               </div>
             </div>
