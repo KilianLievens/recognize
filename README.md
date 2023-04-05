@@ -1,4 +1,4 @@
-# RocketGov Hackathon - Recognize
+# RocketGov Hackathon 2022 WINNERS - Recognize
 
 Get to know people. \
 If you would to get to know us, shoot us a message on [rocket.chat](https://rocketchat.dem.be/)!
